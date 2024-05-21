@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom"
 import { getCategoria, getProduct } from "../../asincronia"
 import { useEffect, useState } from "react"
 import CardComponent from "../CardComponent/CardComponent"
+import './ProductView.css'
 
 function ProducView() {
     const [product, setProduct] = useState({})
@@ -18,7 +19,7 @@ function ProducView() {
     return (
         <>
             
-           
+           <div className="carrta">
             <div className="card" >
                 <img src={product.imagen} alt={product.titulo} ></img>
                 <div className="card-body">
@@ -28,6 +29,7 @@ function ProducView() {
                     <p className="card-text">Stock: {product.stock}</p>
                     
                 </div>
+            </div>
             </div>
 
         </>

@@ -98,7 +98,7 @@ const productos =
 export const getProducts = new Promise((resolve) => {
   setTimeout(() => {
     resolve(productos)
-  }, 2000)
+  })
 })
 
 export const getProduct = (id) => {
@@ -106,5 +106,5 @@ export const getProduct = (id) => {
 }
 
 export const getCategoria = (categoria) => {
-  return productos.find((cate)=>cate.categoria == categoria)
-}
+  return productos.filter((producto) => producto.categoria == categoria);
+};

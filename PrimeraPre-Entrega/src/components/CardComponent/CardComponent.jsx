@@ -38,7 +38,7 @@ function CardComponent({ imagen, titulo, precio, stock, idProd }) {
     /* -------------------------------------------------------------------------- */
     return (
         <>
-            <div className="card" >
+            <div className="card"  >
                 <img src={imagen} alt={titulo} ></img>
                 <div className="card-body">
                     <h3 className="card-title">{titulo}</h3>

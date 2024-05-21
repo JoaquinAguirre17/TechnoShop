@@ -5,11 +5,13 @@ import './ProductosComponent.css'
 
 function ProductosComponent({ titulo, precio, stock, imagen }) {
     const [products, setProducts] = useState([])
+
    
     useEffect(() => {
         getProducts
             .then(data => setProducts(data))
     }, [])
+  
 
 
 
@@ -23,6 +25,7 @@ function ProductosComponent({ titulo, precio, stock, imagen }) {
                     stock={product.stock}
                     imagen={product.imagen}
                     idProd={product.id}
+                
                     />)}
                     
         </div>

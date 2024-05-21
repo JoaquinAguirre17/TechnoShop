@@ -5,6 +5,7 @@ import Home from './components/HomeComponent/Home'
 import ElectronicaComponents from './components/ElectronicaComponets/ElectronicaComponents'
 import RelojeriaComponents from './components/RelojeriaComponents/RelojeriaComponents'
 import ProducView from './components/ProductView/ProductView'
+import CategoryComponent from './components/CategoryComponent/CategotyComponent'
 
 function App() {
 
@@ -20,9 +21,9 @@ function App() {
           /* -------------------------------------------------------------------------- */
           <Route exact path='/relojes' element={<RelojeriaComponents />}></Route>
           <Route exact path='/relojes/:prodId' element={<ProducView />}></Route>
-        
+
           /* -------------------------------------------------------------------------- */
-         
+
         </Routes>
 
       </BrowserRouter>
