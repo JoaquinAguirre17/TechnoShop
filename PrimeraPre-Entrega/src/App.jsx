@@ -1,17 +1,32 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import Navar from './components/Navar/Navar'
-import ItemsListContainer from './components/ItemsListContainer/ItemsListContainer'
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import Home from './components/HomeComponent/Home'
+import ElectronicaComponents from './components/ElectronicaComponets/ElectronicaComponents'
+import RelojeriaComponents from './components/RelojeriaComponents/RelojeriaComponents'
+import ProducView from './components/ProductView/ProductView'
 
 function App() {
-  const [count, setCount] = useState(0)
+
 
   return (
     <>
-      <Navar />
-      <ItemsListContainer greeting='Bienvenidos a Techno Shop' />
+      <BrowserRouter>
+        <Navar />
+        <Routes>
+          <Route exact path='/' element={<Home />}></Route>
+          <Route exact path='/electronica' element={<ElectronicaComponents />}></Route>
+          <Route exact path='/electronica/:prodId' element={<ProducView />}></Route>
+          /* -------------------------------------------------------------------------- */
+          <Route exact path='/relojes' element={<RelojeriaComponents />}></Route>
+          <Route exact path='/relojes/:prodId' element={<ProducView />}></Route>
+        
+          /* -------------------------------------------------------------------------- */
+         
+        </Routes>
+
+      </BrowserRouter>
+
     </>
   )
 }

@@ -1,7 +1,10 @@
 import './Navar.css'
 import CardWidgetComponente from '../CardWidget/CardWidgetComponente'
 import BotonComponente from '../Boton/BotonComponente'
+import { Link } from 'react-router-dom'
+import React from 'react'
 function Navar() {
+
     return (
         <>
             <nav className="navbar navbar-expand-lg ">
@@ -17,21 +20,23 @@ function Navar() {
 
                     <div className="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                         <ul className="navbar-nav ">
+                            <li>
+                                <BotonComponente ruta={'/'} nombre={'Home'} />
+                            </li>
+
                             <li className="nav-item">
-                                <BotonComponente nombre='Electronica' />
+                                <BotonComponente ruta={'/electronica'} nombre={'Electronica'} />
                             </li>
                             <li className="nav-item">
-                            <BotonComponente nombre='Relojes' />
+                                <BotonComponente ruta={'/relojes'} nombre={'Relojes'} />
                             </li>
                             <li className="nav-item">
-                            <BotonComponente nombre='Stanley' />
+                                <BotonComponente ruta={'/stanley'} nombre={'Stanley'}/>
                             </li>
+
                             <li className="nav-item">
                                 <CardWidgetComponente />
                             </li>
-
-
-
 
                         </ul>
                     </div>
