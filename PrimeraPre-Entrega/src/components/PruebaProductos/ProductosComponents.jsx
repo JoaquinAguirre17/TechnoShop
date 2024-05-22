@@ -3,16 +3,17 @@ import { getCategoria, getProducts } from "../../asincronia.js"
 import CardComponent from "../CardComponent/CardComponent.jsx"
 import './ProductosComponent.css'
 
-function ProductosComponent({ titulo, precio, stock, imagen }) {
+function ProductosComponent() {
     const [products, setProducts] = useState([])
 
-   
+   /* -------------------------------------------------------------------------- */
     useEffect(() => {
         getProducts
             .then(data => setProducts(data))
     }, [])
-  
+  /* -------------------------------------------------------------------------- */
 
+ 
 
 
 

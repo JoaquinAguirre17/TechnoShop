@@ -6,6 +6,7 @@ import ElectronicaComponents from './components/ElectronicaComponets/Electronica
 import RelojeriaComponents from './components/RelojeriaComponents/RelojeriaComponents'
 import ProducView from './components/ProductView/ProductView'
 import CategoryComponent from './components/CategoryComponent/CategotyComponent'
+import ProductosComponent from './components/PruebaProductos/ProductosComponents'
 
 function App() {
 
@@ -16,14 +17,14 @@ function App() {
         <Navar />
         <Routes>
           <Route exact path='/' element={<Home />}></Route>
-          <Route exact path='/electronica' element={<ElectronicaComponents />}></Route>
+          <Route exact path='/electronica' element={<ProductosComponent />}></Route>
           <Route exact path='/electronica/:prodId' element={<ProducView />}></Route>
           /* -------------------------------------------------------------------------- */
           <Route exact path='/relojes' element={<RelojeriaComponents />}></Route>
           <Route exact path='/relojes/:prodId' element={<ProducView />}></Route>
 
           /* -------------------------------------------------------------------------- */
-
+          <Route exact path='/categoria/:categoria' element={<CategoryComponent />}></Route>
         </Routes>
 
       </BrowserRouter>

@@ -10,7 +10,7 @@ function CategoryComponent() {
 
     useEffect(() => {
         // Filtra los productos por categoría
-        const productosFiltrados = getCategoria.filter(producto => producto.categoria === categoria);
+        const productosFiltrados = getCategoria(categoria);
         setProductosFiltrados(productosFiltrados);
     }, [categoria]);
 

@@ -4,7 +4,7 @@ import './CardComponent.css'
 import BotonComponente from '../Boton/BotonComponente'
 import { getProducts } from '../../asincronia'
 
-function CardComponent({ imagen, titulo, precio, stock, idProd }) {
+function CardComponent({ imagen, titulo, precio, stock, idProd, categoria }) {
     const [count, setCount] = useState(0)
     const [decrement, setDecrement] = useState(true)
     const [increment, setIncrement] = useState(false)
