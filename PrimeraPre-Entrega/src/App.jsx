@@ -13,6 +13,10 @@ function App() {
       <BrowserRouter>
         <Navar />
         <div className='container'>
+          <div className='titulo'>
+            <h1>Bienvenidos a Techno Shop</h1>
+            </div>
+          
           <Routes>
             <Route exact path='/' element={<Home />}></Route>
             <Route exact path='/detalle/:prodId' element={<ProducView />}></Route>

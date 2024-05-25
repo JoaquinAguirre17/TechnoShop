@@ -1,8 +1,9 @@
 .navbar {
-  background-color: #F96900;
+ background-color: #F96900;
   margin: 0;
   padding: 0;
 }
+
 .navbar-toggler {
   background-color: gray;
 }
@@ -23,6 +24,4 @@
     text-align: center;
     font-size: xx-large;
   }
-
-
 }
