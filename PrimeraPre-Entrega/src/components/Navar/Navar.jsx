@@ -25,13 +25,13 @@ function Navar() {
                             </li>
 
                             <li className="nav-item">
-                                <BotonComponente ruta={'/electronica'} nombre={'Electronica'} />
+                                <BotonComponente ruta={'/categoria/electronica'} nombre={'Electronica'} />
                             </li>
                             <li className="nav-item">
-                                <BotonComponente ruta={'/relojes'} nombre={'Relojes'} />
+                                <BotonComponente ruta={'/categoria/relojes'} nombre={'Relojes'} />
                             </li>
                             <li className="nav-item">
-                                <BotonComponente ruta={'/stanley'} nombre={'Stanley'}/>
+                                <BotonComponente ruta={'/categoria/stanley'} nombre={'Stanley'}/>
                             </li>
 
                             <li className="nav-item">

@@ -58,7 +58,7 @@ function CardComponent({ imagen, titulo, precio, stock, idProd, categoria }) {
                     </ul>
                     <ul className='botones'>
                         <BotonComponente nombre={'Añadir al carrito'} />
-                        <BotonComponente nombre={'Ver Detalle'} ruta={`/electronica/${idProd}`}/>
+                        <BotonComponente nombre={'Ver Detalle'} ruta={`/detalle/${idProd}`}/>
                     </ul>
 
 
