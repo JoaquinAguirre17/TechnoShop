@@ -2,6 +2,10 @@
  background-color: #F96900;
   margin: 0;
   padding: 0;
+  .navbar-nav {
+    display: flex;
+    gap: 50px; /* ajusta el valor según el espacio que desees entre los botones */
+  }
 }
 
 .navbar-toggler {

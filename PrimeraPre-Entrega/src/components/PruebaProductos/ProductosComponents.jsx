@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getProducts } from "../../asincronia.js";
+
 import CardComponent from "../CardComponent/CardComponent.jsx";
 import './ProductosComponent.css';
 

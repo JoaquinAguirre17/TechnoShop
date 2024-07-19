@@ -1,11 +1,19 @@
-import BotonComponente from "../Boton/BotonComponente"
-import CardComponent from "../CardComponent/CardComponent"
-function CardWidgetComponente (){
-  
-    return(
-        <>
-        <BotonComponente nombre={'🛒0'} />
-       </>
-    )
+import React from 'react';
+import { useCart } from '../../Contex/CartContex';
+import BotonComponente from '../Boton/BotonComponente';
+
+function CardWidgetComponente() {
+    const { totalCountProducts } = useCart();
+
+    return (
+        <div>
+         <BotonComponente nombre={`Carrito🛒`} ruta={'/carrito'} contador={totalCountProducts()} />
+         
+        </div>
+    );
 }
-export default CardWidgetComponente
+
+export default CardWidgetComponente;
+
+
+
