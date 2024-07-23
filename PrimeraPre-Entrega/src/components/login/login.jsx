@@ -1,6 +1,7 @@
 // src/components/Login/Login.js
 import { useState } from 'react';
 import { useAuth } from '..//../Contex/AuthContext';
+import './login.css'
 
 const Login = () => {
     const [username, setUsername] = useState('');
@@ -27,29 +28,32 @@ const Login = () => {
     };
 
     return (
-        <div>
-            <h2>Login</h2>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Username: </label>
+        <div className="login-container">
+            <h2 className="login-title">INGRESAR</h2>
+            <form className="login-form" onSubmit={handleSubmit}>
+                <div className="form-group">
+                    <label className="form-label">Username: </label>
                     <input
                         type="text"
+                        className="form-input"
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
                     />
                 </div>
-                <div>
-                    <label>Password: </label>
+                <div className="form-group">
+                    <label className="form-label">Password: </label>
                     <input
                         type="password"
+                        className="form-input"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>
-                <button type="submit">Login</button>
+                <button type="submit" className="submit-button">ENTRAR</button>
             </form>
-            {message && <p>{message}</p>}
+            {message && <p className="message">{message}</p>}
         </div>
+
     );
 };
 

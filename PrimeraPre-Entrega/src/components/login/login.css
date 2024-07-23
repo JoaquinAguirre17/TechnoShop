@@ -1,0 +1,71 @@
+/* Contenedor principal */
+.login-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid orange;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: hsla(0, 0%, 3%, 0.623);
+}
+
+/* Título */
+.login-title {
+    text-align: center;
+    text-decoration: underline;
+    color: orange;
+    margin-bottom: 20px;
+}
+
+/* Formulario */
+.login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Contenedor de los campos del formulario */
+.form-group {
+    margin-bottom: 15px;
+}
+
+/* Etiquetas */
+.form-label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #f7f7f7;
+}
+
+/* Campos de entrada */
+.form-input[type="text"],
+.form-input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    box-sizing: border-box;
+    border: 1px solid rgb(255, 253, 250);
+    border-radius: 5px;
+}
+
+/* Botón de envío */
+.submit-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007BFF;
+    color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.carrito-submit-button:hover {
+    background-color: #0056b3;
+}
+
+/* Mensaje */
+.carrito-message {
+    text-align: center;
+    color: red;
+    margin-top: 20px;
+}
