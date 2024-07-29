@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { useCart } from '../../Contex/CartContex';
 import BotonComponente from '../Boton/BotonComponente';
 
@@ -7,8 +7,8 @@ function CardWidgetComponente() {
 
     return (
         <div>
-         <BotonComponente nombre={`Carrito🛒`} ruta={'/carrito'} contador={totalCountProducts()} />
-         
+            <BotonComponente nombre={`Carrito🛒`} ruta={'/carrito'} contador={totalCountProducts()} />
+
         </div>
     );
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import CardComponent from "../CardComponent/CardComponent.jsx";
 import './ItemListContainer.css'

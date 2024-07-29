@@ -1,28 +1,35 @@
 // src/components/Login/Login.js
 import { useState } from 'react';
-import { useAuth } from '..//../Contex/AuthContext';
+import { useAuth } from '../../Contex/AuthContext';
+import { useNavigate } from 'react-router-dom'; // Importa useNavigate
 
 const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
     const { login } = useAuth();
+    const navigate = useNavigate(); // Inicializa useNavigate
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const response = await fetch('http://localhost:5000/api/auth/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ username, password })
-        });
-        const data = await response.json();
-        if (response.ok) {
-            login(data.token); // Llama a login con el token recibido
-            setMessage('Login successful.');
-        } else {
-            setMessage(`Error: ${data.message}`);
+        try {
+            const response = await fetch('http://localhost:5000/api/auth/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username, password })
+            });
+            const data = await response.json();
+            if (response.ok) {
+                login(data.token); // Llama a login con el token recibido
+                setMessage('Login successful.');
+                navigate('/admin'); // Redirige a la página con permisos
+            } else {
+                setMessage(`Error: ${data.message}`);
+            }
+        } catch (error) {
+            setMessage(`Error: ${error.message}`);
         }
     };
 

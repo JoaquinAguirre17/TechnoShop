@@ -1,6 +1,7 @@
 /// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { doc, getDoc, getFirestore, collection, getDocs, query, where, addDoc } from "firebase/firestore";
+import {  getFirestore, collection, getDocs, query, where, addDoc } from "firebase/firestore";
+import axios from 'axios';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -36,22 +37,18 @@ export async function filterProdsByCategoria(categoria) {
   return listaFiltro;
 }
 
-export async function getProductView(id) {
-  try {
-    const docRef = doc(db, 'products', id);
-    const docSnap = await getDoc(docRef);
 
-    if (docSnap.exists()) {
-      return [{ id: docSnap.id, ...docSnap.data() }];
-    } else {
-      console.log('No such document!');
-      return [];
-    }
-  } catch (error) {
-    console.error('Error fetching product view:', error);
-    return [];
-  }
-}
+
+export const getProductView = async (prodId) => {
+    const token = localStorage.getItem('token'); // Obtener el token del almacenamiento local
+    const response = await axios.get(`http://localhost:5000/api/productos/${prodId}`, {
+        headers: {
+            'Authorization': `Bearer ${token}`, // Incluir el token en las cabeceras
+        },
+    });
+    return response.data;
+};
+
 
 //Orden de pedido
   export const addOrder = async (order) => {

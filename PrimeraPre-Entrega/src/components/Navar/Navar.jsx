@@ -1,12 +1,9 @@
 // src/components/Navar/Navar.js
 import './Navar.css';
-import CardWidgetComponente from '../CardWidget/CardWidgetComponente';
 import BotonComponente from '../Boton/BotonComponente';
-import { useCart } from '../../Contex/CartContex';
 import { useAuth } from '../../Contex/AuthContext';
 
 function Navar() {
-    const { getTotalItems } = useCart();
     const { isAuthenticated } = useAuth();
 
     return (
@@ -19,18 +16,6 @@ function Navar() {
                     <ul className="navbar-nav">
                         <li className="nav-item">
                             <BotonComponente ruta='/' nombre='Home' />
-                        </li>
-                        <li className="nav-item">
-                            <BotonComponente ruta='/categoria/electronica' nombre='Electronica' categoria1='Hola' categoria2='perr' />
-                        </li>
-                        <li className="nav-item">
-                            <BotonComponente ruta='/categoria/relojes' nombre='Relojes' />
-                        </li>
-                        <li className="nav-item">
-                            <BotonComponente ruta='/categoria/stanley' nombre='Stanley' />
-                        </li>
-                        <li className="nav-item">
-                            <CardWidgetComponente />
                         </li>
                         <li className="nav-item">
                             <BotonComponente ruta='/login' nombre='Login' />

@@ -29,9 +29,9 @@ function ProductosComponent() {
             {categoria.map((product) => (
                 <CardComponent
                     key={product.id}
-                    titulo={product.titulo}
+                    titulo={product.nombre}
                     precio={product.precio}
-                    stock={product.stock}
+                    descripcion={product.descripcion}
                     imagen={product.imagen}
                     idProd={product.id}
                 />
