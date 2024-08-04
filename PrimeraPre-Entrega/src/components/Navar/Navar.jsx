@@ -22,7 +22,7 @@ function Navar() {
                         </li>
                         {isAuthenticated && (
                             <li className="nav-item">
-                                <BotonComponente ruta='/admin' nombre='Admin' />
+                                <BotonComponente ruta='/admin' nombre='Administrar' />
                             </li>
                         )}
                     </ul>

@@ -1,14 +1,21 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import {jwtDecode} from 'jwt-decode'; // Corregir la importación de jwtDecode
+import {jwtDecode} from 'jwt-decode';
 import './ProductManagement.css';
 
 const ProductManagement = () => {
     const [products, setProducts] = useState([]);
-    const [newProduct, setNewProduct] = useState({ nombre: '', descripcion: '', precio: '', imagen: null });
+    const [newProduct, setNewProduct] = useState({ nombre: '', descripcion: '', precio: '', imagen: null, categoria: '' });
     const [selectedProduct, setSelectedProduct] = useState(null);
     const [imagePreview, setImagePreview] = useState('');
     const [newProductImagePreview, setNewProductImagePreview] = useState('');
+
+    const categorias = [
+        "Electrónica",
+        "Stanley",
+        "Relojes",
+        "Celulares"
+    ];
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -52,6 +59,7 @@ const ProductManagement = () => {
             formData.append('nombre', newProduct.nombre);
             formData.append('descripcion', newProduct.descripcion);
             formData.append('precio', newProduct.precio);
+            formData.append('categoria', newProduct.categoria);
             if (newProduct.imagen) {
                 formData.append('imagen', newProduct.imagen);
             }
@@ -64,7 +72,7 @@ const ProductManagement = () => {
             });
 
             setProducts([...products, response.data]);
-            setNewProduct({ nombre: '', descripcion: '', precio: '', imagen: null });
+            setNewProduct({ nombre: '', descripcion: '', precio: '', imagen: null, categoria: '' });
             setNewProductImagePreview('');
         } catch (error) {
             console.error('Failed to add product', error);
@@ -100,6 +108,7 @@ const ProductManagement = () => {
             formData.append('nombre', selectedProduct.nombre);
             formData.append('precio', selectedProduct.precio);
             formData.append('descripcion', selectedProduct.descripcion);
+            formData.append('categoria', selectedProduct.categoria);
             if (selectedProduct.imagen) {
                 formData.append('imagen', selectedProduct.imagen);
             }
@@ -176,6 +185,15 @@ const ProductManagement = () => {
                     value={newProduct.nombre}
                     onChange={(e) => setNewProduct({ ...newProduct, nombre: e.target.value })}
                 />
+                <select
+                    value={newProduct.categoria}
+                    onChange={(e) => setNewProduct({ ...newProduct, categoria: e.target.value })}
+                >
+                    <option value="" disabled>Seleccionar Categoría</option>
+                    {categorias.map((categoria, index) => (
+                        <option key={index} value={categoria}>{categoria}</option>
+                    ))}
+                </select>
                 <input
                     type="text"
                     placeholder="Descripción"
@@ -224,6 +242,15 @@ const ProductManagement = () => {
                         value={selectedProduct.nombre}
                         onChange={(e) => setSelectedProduct({ ...selectedProduct, nombre: e.target.value })}
                     />
+                    <select
+                        value={selectedProduct.categoria}
+                        onChange={(e) => setSelectedProduct({ ...selectedProduct, categoria: e.target.value })}
+                    >
+                        <option value="" disabled>Seleccionar Categoría</option>
+                        {categorias.map((categoria, index) => (
+                            <option key={index} value={categoria}>{categoria}</option>
+                        ))}
+                    </select>
                     <input
                         type="number"
                         value={selectedProduct.precio}
@@ -249,4 +276,3 @@ const ProductManagement = () => {
 };
 
 export default ProductManagement;
-
