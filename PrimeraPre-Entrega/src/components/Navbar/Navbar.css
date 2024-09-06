@@ -1,0 +1,86 @@
+/* Navbar.css */
+
+/* Barra de navegación personalizada */
+.custom-navbar {
+    background-color: orangered; /* Color de fondo */
+    width: 100%; /* Ocupa el 100% del ancho de la pantalla */
+   
+    
+}
+
+/* Control de visualización del menú en dispositivos pequeños */
+.navbar-toggler {
+    border-color: white; /* Color del borde del botón de colapso */
+}
+
+/* Ajustes para la navegación en dispositivos grandes */
+.navegacion {
+    display: flex;
+    justify-content: center; /* Centra los elementos horizontalmente */
+    width: 100%;
+    flex-wrap: wrap; /* Permite que los elementos se muevan a una nueva línea si es necesario */
+}
+
+.nav-item {
+    margin: 0 10px; /* Espaciado entre los elementos */
+}
+
+/* Dropdowns personalizados */
+.electronica-nav-dropdown,
+.relojeria-nav-dropdown,
+.telefonia-nav-dropdown,
+.gamer-nav-dropdown {
+    background-color: #000000a1;
+    margin: 5px;
+    border-radius: 20px;
+    border: 1px solid rgb(1, 1, 1);
+}
+
+.dropdown-menu {
+    background-color: rgba(0, 0, 0, 0.9); /* Fondo semi-transparente */
+    border-radius: 10px;
+}
+.navbar-nav .nav-link,
+.navbar-nav .dropdown-toggle,
+.homebtn {
+    color: white !important; /* Asegura que el texto sea blanco */
+    font-weight: bold;
+    text-align: center;
+    padding: 5px;
+}
+
+.dropdown-item {
+    color: #ffffff; /* Color del texto de los elementos */
+}
+
+.dropdown-item:hover {
+    background-color: #333333; 
+    color: orange;/* Fondo de los elementos al pasar el ratón */
+}
+
+/* Botones personalizados */
+.homebtn {
+    background-color: #000000a1;
+    margin: 5px;
+    border-radius: 20px;
+    border: 1px solid gray;
+    color: white;
+    font-weight: bold;
+}
+
+/* Respuesta a tamaños de pantalla más pequeños */
+@media (max-width: 768px) {
+    .navbar-collapse {
+        justify-content: flex-start;
+    }
+
+    .navegacion {
+        justify-content: flex-start;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-item {
+        margin: 5px 0;
+    }
+}

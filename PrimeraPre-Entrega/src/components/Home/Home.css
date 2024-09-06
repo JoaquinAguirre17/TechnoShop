@@ -1,0 +1,394 @@
+.home {
+  margin-top: 30px;
+  background-color: #362f68;
+  margin: 20px;
+  border-radius: 20px;
+  border-style: solid;
+  border-color: orange;
+  border-width: 10px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Dos columnas iguales */
+  grid-template-rows: auto; /* Altura automática basada en el contenido */
+  grid-template-areas:
+    "novedades novedades" /* Se añadió novedades */
+    "telefonia electronicaygamer"
+    "telefonia relojeria"
+    "redes redes"
+    "pagos pagos"
+    "evento1 evento1"
+    "marcas marcas"; /* Coloca el slider en una fila independiente */
+  gap: 20px; /* Espacio entre las grillas */
+}
+
+/* Ajuste en el carrusel */
+.carousel {
+  max-width: 100%;
+  margin: auto;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-item img {
+  width: 100%;
+  height: auto;
+  max-height: 500px; /* Max height to maintain aspect ratio on large screens */
+}
+
+/* --------------------------------NOVEDADES------------------------------------------ */
+.novedades {
+  grid-area: novedades;
+  .contenedor-padre {
+    width: 100%; /* Asegura que ocupe todo el ancho disponible */
+    max-width: 1200px; /* Limita el tamaño máximo, si es necesario */
+    margin: auto; /* Centra el contenedor */
+    padding: 10px; /* Espacio alrededor del contenido */
+  }
+}
+
+.titulo-novedades h2 {
+  text-align: center;
+  margin: 20px;
+  color: orange;
+  font-size: 64px;
+  text-decoration: underline;
+}
+
+.cards-novedades {
+  display: flex;
+  justify-content: center; /* Centra las tarjetas horizontalmente */
+  flex-wrap: wrap; /* Permite que las tarjetas hagan wrap */
+  padding: 10px;
+}
+
+.relojeriahome {
+  grid-area: relojeria;
+  padding: 20px;
+  .boton-relojeria {
+    width: 100%;
+    height: 300px;
+    background-image: url("https://static.vecteezy.com/system/resources/previews/001/421/122/large_2x/watchmaker-replacing-a-battery-free-photo.jpg");
+    background-size: cover; /* Asegura que la imagen cubra todo el botón */
+    background-position: center; /* Centra la imagen en el botón */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    color: white;
+    font-size: x-large;
+    font-weight: bold;
+    overflow: hidden;
+    border-style: solid;
+    border-color: orange;
+    border-width: 4px;
+  }
+}
+
+.telefoniahome {
+  grid-area: telefonia;
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+  .boton-telefono {
+    width: 500px;
+    height: 100%;
+    background-image: url("https://http2.mlstatic.com/D_NQ_NP_955811-MLA48183160276_112021-O.webp");
+    background-size: cover; /* Asegura que la imagen cubra todo el botón */
+    background-position: center; /* Centra la imagen en el botón */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    color: black;
+    font-size: x-large;
+    font-weight: bold;
+    overflow: hidden;
+    border-style: solid;
+    border-color: orange;
+    border-width: 4px;
+  }
+}
+
+.electronicaygamer {
+  grid-area: electronicaygamer;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  margin: 10px;
+  .boton-electronica {
+    width: 260px;
+    height: 200px;
+    background-image: url("https://image.made-in-china.com/202f0j00ocLGIhNPJQqp/2-in-1-Type-C-to-3-5-mm-Charger-Headphone-Audio-Jack-USB-C-Cable-for-Mobile-Phone.webp");
+    background-size: cover; /* Asegura que la imagen cubra todo el botón */
+    background-position: center; /* Centra la imagen en el botón */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    color: black;
+    font-size: x-large;
+    font-weight: bold;
+    overflow: hidden;
+    border-style: solid;
+    border-color: orange;
+    border-width: 4px;
+  }
+  .boton-gamer {
+    width: 260px;
+    height: 200px;
+    background-image: url("https://media.es.wired.com/photos/6442f341a566376ee967ba24/master/pass/GettyImages-1424828162.jpg");
+    background-size: cover; /* Asegura que la imagen cubra todo el botón */
+    background-position: center; /* Centra la imagen en el botón */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    color: black;
+    font-size: x-large;
+    font-weight: bold;
+    overflow: hidden;
+    border-style: solid;
+    border-color: orange;
+    border-width: 4px;
+  }
+}
+
+.boton-relojeria:hover,
+.boton-electronica:hover,
+.boton-gamer:hover,
+.boton-telefonia:hover {
+  opacity: 0.8;
+}
+/* ----------------------------SOLCIALES HOME---------------------------------------------- */
+.redessociales {
+  grid-area: redes;
+  background-color: #0c0c0c6e; /* Color de fondo para la sección */
+  padding: 20px;
+  border-radius: 8px;
+  border-style: solid;
+  border-color: orange;
+
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+  .ubicacion {
+    margin-top: 20px;
+    width: 600px;
+    height: 300px;
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    margin-left: auto; /* Centrando el contenedor */
+    margin-right: auto; /* Centrando el contenedor */
+  }
+  
+  .maps {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    border-style: solid;
+    border-width: 5px;
+    border-color:gray;
+  }
+}  
+
+.titulo-redessociales h4 {
+  font-size: 1.5rem;
+  color: #fffcfc;
+  margin-bottom: 15px;
+  font-weight: bold;
+  font-size: 45px;
+}
+
+.socialshome {
+  list-style: none; /* Eliminar los puntos de lista */
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* Espacio entre los iconos */
+}
+
+.socialshome li {
+  display: inline-block;
+}
+
+.socialshome a {
+  border-style: solid;
+  border-color: orange;
+  color: orange; /* Color de los iconos */
+  background-color: #362f68; /* Color de fondo de los iconos */
+  border-radius: 50%;
+  width: 100px; /* Aumentar tamaño del contenedor para iconos más grandes */
+  height: 100px; /* Aumentar tamaño del contenedor para iconos más grandes */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem; /* Aumentar tamaño del icono */
+  text-decoration: none; /* Eliminar el subrayado de los enlaces */
+  transition: background-color 0.3s ease; /* Transición para el efecto hover */
+}
+
+.socialshome a:hover {
+  background-color: #362f68; /* Cambio de color al pasar el mouse */
+  color: white;
+}
+
+/* ---------------------------------pagos----------------------------------------- */
+.mediopagos {
+  grid-area: pagos;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  .pagos {
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+    border-radius: 20px;
+  }
+  .titulo-mediopagos h3 {
+    color: white;
+    padding: 20px;
+    font-size: 34px;
+  }
+}
+
+.marcas {
+  grid-area: marcas;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  .marcaimg {
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+  }
+}
+
+/* ------------------------------------EVENTO1-------------------------------------- */
+.evento1 {
+  grid-area: evento1;
+  border-style: solid;
+  border-color: orange;
+  border-radius: 20px;
+  margin: 20px;
+  .titulo-evento1 {
+    justify-content: start;
+    margin: 20px;
+    .mesmama {
+      text-align: start;
+      padding: 20px;
+      font-size: 64px;
+      font-weight: bold;
+      color: white;
+      text-decoration: underline;
+    }
+  }
+  .slider {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+/* ---------------------------------RESPONSIVE---------------------------------------- */
+
+/* Pantallas grandes (Desktop y monitores grandes) */
+@media (min-width: 1200px) {
+  .home {
+    grid-template-columns: repeat(2, 1fr); /* Dos columnas iguales */
+    grid-template-areas:
+      "novedades novedades"
+      "telefonia electronicaygamer"
+      "telefonia relojeria"
+      "redes redes"
+      "pagos pagos"
+      "evento1 evento1"
+      "marcas marcas"; /* Mantenemos el diseño para pantallas grandes */
+  }
+}
+
+/* Pantallas medianas (Tablets y pantallas pequeñas) */
+@media (max-width: 1199px) {
+  .home {
+    grid-template-columns: 1fr; /* Una sola columna */
+    grid-template-areas:
+      "novedades"
+      "telefonia"
+      "relojeria"
+      "electronicaygamer"
+      "redes"
+      "pagos"
+      "evento1"
+      "marcas";
+  }
+
+  .carousel-item img {
+    max-height: 400px;
+  }
+
+  .titulo-novedades h2 {
+    font-size: 2.5rem;
+  }
+
+  .boton-relojeria,
+  .boton-telefono,
+  .boton-electronica,
+  .boton-gamer {
+    font-size: 1.25rem;
+    width: 100%; /* Usar todo el ancho disponible */
+    height: 300px;
+  }
+}
+
+/* Pantallas pequeñas (Smartphones) */
+@media (max-width: 768px) {
+  .home {
+    grid-template-columns: 1fr; /* Una sola columna */
+    grid-template-areas:
+      "novedades"
+      "telefonia"
+      "relojeria"
+      "electronicaygamer"
+      "redes"
+      "pagos"
+      "evento1"
+      "marcas";
+  }
+
+  .carousel-item img {
+    max-height: 300px;
+  }
+
+  .titulo-novedades h2 {
+    font-size: 2rem;
+  }
+
+  .boton-relojeria,
+  .boton-telefono,
+  .boton-electronica,
+  .boton-gamer {
+    font-size: 1rem;
+    height: 250px;
+  }
+}
+
+/* Pantallas extra pequeñas (Smartphones pequeños) */
+@media (max-width: 576px) {
+  .home {
+    grid-template-columns: 1fr; /* Una sola columna */
+    grid-template-areas:
+      "novedades"
+      "telefonia"
+      "relojeria"
+      "electronicaygamer"
+      "redes"
+      "pagos"
+      "evento1"
+      "marcas";
+  }
+
+  .carousel-item img {
+    max-height: 250px;
+  }
+
+  .titulo-novedades h2 {
+    font-size: 1.5rem;
+  }
+
+  .boton-relojeria,
+  .boton-telefono,
+  .boton-electronica,
+  .boton-gamer {
+    font-size: 0.875rem;
+    height: 150px;
+  }
+}

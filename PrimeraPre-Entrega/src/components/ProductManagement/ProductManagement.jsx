@@ -12,7 +12,6 @@ const ProductManagement = () => {
 
     const categorias = [
         "Electrónica",
-        "Stanley",
         "Relojes",
         "Celulares"
     ];
