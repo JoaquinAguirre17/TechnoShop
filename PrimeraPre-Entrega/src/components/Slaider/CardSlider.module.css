@@ -1,0 +1,15 @@
+/* CardSlider.module.css */
+.cardSlider {
+  margin: 10px ;
+}
+
+.cardTitle {
+  color: #333;
+  text-align: center;
+}
+
+.cardText {
+  font-size: 0.9rem;
+}
+
+/* Opcional: Puedes agregar más estilos aquí para mejorar la apariencia */
