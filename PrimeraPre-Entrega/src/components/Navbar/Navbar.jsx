@@ -42,7 +42,6 @@ const NavBar = () => {
                         <NavDropdown.Item href="/productos-telefonia/fundas/">Fundas</NavDropdown.Item>
                         <NavDropdown.Item href="/productos-telefonia/accesorios/">Accesorios</NavDropdown.Item>
                         <NavDropdown.Item href="/productos-telefonia/templados-hidrogel/">Vidrios-Hidrogel</NavDropdown.Item>
-
                     </NavDropdown>
                     <NavDropdown title="GAMER" className="gamer-nav-dropdown">
                         <LinkContainer to="/gamer">

@@ -1,98 +1,159 @@
+/* ProductManagement.css */
 
-
-.product-management {
-    max-width: 800px;
+/* Contenedor principal */
+.container {
+    max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #f9f9f9;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.product-management h2 {
-    text-align: center;
+/* Estilos generales para la sección de productos y formularios */
+.ProductManagement {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+/* Sección de formulario para añadir producto */
+.addProduct, .actualizarproducto {
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+}
+
+/* Títulos de las secciones */
+.tituloaddproducto, .tituloactualizarproducto {
+    font-size: 1.8em;
     margin-bottom: 20px;
     color: #333;
+    text-align: center;
 }
 
-.section {
-    margin-bottom: 30px;
+/* Inputs generales */
+input[type="text"], input[type="number"], select, input[type="file"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1em;
+}
+
+/* Estilo para input de precio */
+input[type="number"] {
+    text-align: right;
+}
+
+/* Vista previa de imagen */
+.image-preview {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+/* Botones de los formularios */
+button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+/* Contenedor de lista de productos */
+.product-list {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.product-list h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+    width: 100%;
+}
+
+/* Tarjeta de producto */
+.product-card {
+    width: 100%;
+    max-width: 300px;
     padding: 15px;
     border: 1px solid #ddd;
     border-radius: 8px;
     background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: box-shadow 0.3s ease;
 }
 
-.section h3 {
+.product-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
     margin-bottom: 15px;
-    color: #fff;
 }
 
-.section input,
-.section select {
-    width: calc(100% - 20px);
-    padding: 10px;
+.product-card h4 {
+    font-size: 18px;
+    margin: 10px 0;
+    color: #333;
+}
+
+.product-card p {
+    font-size: 14px;
+    color: #666;
     margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
 }
 
-.section button {
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
+/* Botones de la tarjeta */
+.product-card button {
     background-color: #007bff;
+    border: none;
     color: white;
+    padding: 10px 15px;
+    margin: 5px;
+    border-radius: 4px;
     cursor: pointer;
-    font-size: 16px;
+    transition: background-color 0.3s ease;
+    width: 100%;
 }
 
-.section button:hover {
+.product-card button:hover {
     background-color: #0056b3;
 }
 
-.image-preview {
-    max-width: 200px;
-    max-height: 200px;
-    margin-top: 10px;
-    display: block;
-    border-radius: 4px;
+.product-card button:nth-of-type(2) {
+    background-color: #dc3545;
 }
 
-
-.product-cards {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.product-card {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 16px;
-    width: 200px;
-    text-align: center;
-}
-
-.product-image {
-    max-width: 100%;
-    border-radius: 8px;
-    height: auto;
-}
-
-.product-info {
-    margin-top: 10px;
-}
-
-.product-info h4 {
-    margin: 10px 0;
-    font-size: 18px;
-}
-
-.product-info p {
-    margin: 5px 0;
-}
-
-.product-info button {
-    margin: 5px;
+.product-card button:nth-of-type(2):hover {
+    background-color: #c82333;
 }

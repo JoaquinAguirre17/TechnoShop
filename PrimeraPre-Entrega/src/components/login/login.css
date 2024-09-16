@@ -1,7 +1,7 @@
 /* Contenedor principal */
 .login-container {
     max-width: 400px;
-    margin: 0 auto;
+    margin: 40px auto;
     padding: 20px;
     border: 1px solid orange;
     border-radius: 10px;
