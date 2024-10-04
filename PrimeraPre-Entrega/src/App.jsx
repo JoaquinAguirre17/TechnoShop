@@ -12,6 +12,7 @@ import Telefonia from './components/Telefonia/Telefonia';
 import Gamer from './components/Gamer/Gamer';
 import Home from './components/Home/Home';
 import Footer from './components/Footer/Footer';
+import CategoriaProductos from './components/CategoriaProductos/CategoriaProductos';
 
 
 
@@ -35,6 +36,7 @@ function App() {
                     <Route path='/gamer' element={<Gamer />} />
                     <Route path='/login' element={<Login />} />
                     <Route path='/admin' element={<PrivateRoute element={<ProductManagement />} />} />
+                    <Route path="/categoria/:categoria" element={<CategoriaProductos />} />
                 </Routes>
                 <Footer/>
             </BrowserRouter>

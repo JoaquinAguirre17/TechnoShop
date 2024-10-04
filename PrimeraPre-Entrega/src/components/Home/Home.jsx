@@ -34,7 +34,6 @@ function Home() {
                     <div className="relojeriahome">
                         <Link to="/relojeria">
                             <button className="boton-relojeria">
-                                RELOJERIA
                             </button>
                         </Link>
                     </div>
@@ -42,7 +41,6 @@ function Home() {
                     <div className="telefoniahome">
                         <Link to="/telefonia">
                             <button className="boton-telefono">
-                                TELEFONÍA
                             </button>
                         </Link>
                     </div>
@@ -50,12 +48,10 @@ function Home() {
                     <div className="electronicaygamer">
                         <Link to="/electronica">
                             <button className="boton-electronica">
-                                ELECTRÓNICA
                             </button>
                         </Link>
                         <Link to="/gamer">
                             <button className="boton-gamer">
-                                GAMER
                             </button>
                         </Link>
                     </div>
@@ -69,8 +65,8 @@ function Home() {
                                 <li><a href="https://wa.me/3512318469" target="_blank" rel="noopener noreferrer"><i className="fab fa-whatsapp"></i></a></li>
                             </ul>
                         </div>
-                        <div className='ubicacion'> 
-                        <iframe className='maps' src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3405.0568948717064!2d-64.2070158235361!3d-31.412558496067685!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x943299c3a764af9b%3A0x2321d0c50b87d470!2sTechno%20Shop!5e0!3m2!1ses-419!2sar!4v1725589902461!5m2!1ses-419!2sar"   loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <div className='ubicacion'>
+                            <iframe className='maps' src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3405.0568948717064!2d-64.2070158235361!3d-31.412558496067685!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x943299c3a764af9b%3A0x2321d0c50b87d470!2sTechno%20Shop!5e0!3m2!1ses-419!2sar!4v1725589902461!5m2!1ses-419!2sar" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
                     </div>
                     <div className='mediopagos'>
