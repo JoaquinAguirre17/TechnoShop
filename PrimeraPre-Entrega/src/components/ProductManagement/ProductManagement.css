@@ -1,47 +1,42 @@
 /* ProductManagement.css */
 
 /* Contenedor principal */
-.container {
+.product-management-container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
     font-family: Arial, sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
-/* Estilos generales para la sección de productos y formularios */
-.ProductManagement {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 20px;
+/* Mensaje de error */
+.error-message {
+    color: red;
+    font-weight: bold;
+    text-align: center;
 }
 
-/* Sección de formulario para añadir producto */
-.addProduct, .actualizarproducto {
-    width: 100%;
-    max-width: 600px;
-    margin: 20px auto;
+/* Secciones */
+.section {
+    margin: 20px 0;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     background-color: #f9f9f9;
-    border: 1px solid #ddd;
 }
 
 /* Títulos de las secciones */
-.tituloaddproducto, .tituloactualizarproducto {
+.section h3 {
     font-size: 1.8em;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     color: #333;
     text-align: center;
 }
 
-/* Inputs generales */
-input[type="text"], input[type="number"], select, input[type="file"] {
+/* Estilos de los inputs */
+input[type="text"], 
+input[type="number"], 
+select, 
+input[type="file"] {
     width: 100%;
     padding: 12px;
     margin-bottom: 15px;
@@ -60,7 +55,7 @@ input[type="number"] {
     max-width: 100%;
     height: auto;
     display: block;
-    margin-bottom: 15px;
+    margin: 15px auto;
     border: 1px solid #ddd;
     border-radius: 6px;
 }
@@ -84,27 +79,15 @@ button:hover {
     transform: translateY(-2px);
 }
 
-/* Contenedor de lista de productos */
-.product-list {
-    margin-top: 20px;
-    display: flex;
-    flex-wrap: wrap;
+/* Contenedor de tarjetas de productos */
+.product-cards-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
-    justify-content: center;
-}
-
-.product-list h3 {
-    font-size: 24px;
-    margin-bottom: 20px;
-    color: #333;
-    text-align: center;
-    width: 100%;
 }
 
 /* Tarjeta de producto */
 .product-card {
-    width: 100%;
-    max-width: 300px;
     padding: 15px;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -156,4 +139,23 @@ button:hover {
 
 .product-card button:nth-of-type(2):hover {
     background-color: #c82333;
+}
+
+/* Ajustes para pantallas más pequeñas */
+@media (max-width: 1024px) {
+    .product-cards-container {
+        grid-template-columns: repeat(3, 1fr); /* 3 productos por fila */
+    }
+}
+
+@media (max-width: 768px) {
+    .product-cards-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 productos por fila */
+    }
+}
+
+@media (max-width: 576px) {
+    .product-cards-container {
+        grid-template-columns: 1fr; /* 1 producto por fila en pantallas muy pequeñas */
+    }
 }
