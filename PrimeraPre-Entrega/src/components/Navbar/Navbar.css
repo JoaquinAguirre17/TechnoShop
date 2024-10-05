@@ -4,8 +4,10 @@
 .custom-navbar {
     background-color: orangered; /* Color de fondo */
     width: 100%; /* Ocupa el 100% del ancho de la pantalla */
-   
-    
+    padding: 10px 0; /* Espaciado para darle más aire a la barra */
+    top: 0;
+    z-index: 1000; /* Asegura que esté sobre el contenido */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Añade sombra para darle profundidad */
 }
 
 /* Control de visualización del menú en dispositivos pequeños */
@@ -16,13 +18,35 @@
 /* Ajustes para la navegación en dispositivos grandes */
 .navegacion {
     display: flex;
-    justify-content: center; /* Centra los elementos horizontalmente */
+    justify-content: center; /* Centra los botones horizontalmente */
     width: 100%;
-    flex-wrap: wrap; /* Permite que los elementos se muevan a una nueva línea si es necesario */
+    flex-wrap: nowrap; /* Permite que los elementos se muevan a una nueva línea si es necesario */
+    gap: 20px; /* Espaciado uniforme entre los botones */
+    align-items: center; /* Alinea verticalmente los botones */
+    text-align: center; /* Centra el texto de los botones */
 }
 
 .nav-item {
-    margin: 0 10px; /* Espaciado entre los elementos */
+    margin: 0; /* Elimina el margen lateral */
+}
+
+/* Botones personalizados */
+.homebtn {
+    background-color: rgba(0, 0, 0, 0.8);
+    margin: 5px;
+    border-radius: 20px;
+    border: 1px solid gray;
+    color: white;
+    font-weight: bold;
+    width: max-content;
+    padding: 10px 20px; /* Ajusta el relleno interno para mantener un tamaño uniforme */
+    transition: background-color 0.3s ease, color 0.3s ease;
+    display: inline-block; /* Hace que los botones se comporten como bloques en línea */
+}
+
+.homebtn:hover {
+    background-color: #333333;
+    color: orange;
 }
 
 /* Dropdowns personalizados */
@@ -30,57 +54,57 @@
 .relojeria-nav-dropdown,
 .telefonia-nav-dropdown,
 .gamer-nav-dropdown {
-    background-color: #000000a1;
-    margin: 5px;
-    border-radius: 20px;
-    border: 1px solid rgb(1, 1, 1);
+    background-color: rgba(0, 0, 0, 0.85);
+    border-radius: 10px; /* Bordes más suaves */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Borde blanco suave */
+    
 }
 
 .dropdown-menu {
     background-color: rgba(0, 0, 0, 0.9); /* Fondo semi-transparente */
     border-radius: 10px;
+    padding: 10px 0; /* Espaciado interno */
 }
+
 .navbar-nav .nav-link,
 .navbar-nav .dropdown-toggle,
 .homebtn {
     color: white !important; /* Asegura que el texto sea blanco */
     font-weight: bold;
-    text-align: center;
-    padding: 5px;
+    padding: 10px 20px; /* Ajusta el relleno interno */
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* Estilo para los elementos del dropdown */
 .dropdown-item {
-    color: #ffffff; /* Color del texto de los elementos */
+    color: white; /* Color del texto de los elementos */
+    padding: 8px 15px; /* Ajuste del espaciado interno */
+    font-size: larger;
 }
 
 .dropdown-item:hover {
-    background-color: #333333; 
-    color: orange;/* Fondo de los elementos al pasar el ratón */
-}
-
-/* Botones personalizados */
-.homebtn {
-    background-color: #000000a1;
-    margin: 5px;
-    border-radius: 20px;
-    border: 1px solid gray;
-    color: white;
-    font-weight: bold;
+    background-color: #333; /* Fondo de los elementos al pasar el ratón */
+    color: orange; /* Color del texto en hover */
 }
 
 /* Respuesta a tamaños de pantalla más pequeños */
 @media (max-width: 768px) {
     .navbar-collapse {
-        justify-content: flex-start;
+        justify-content: center;
+        padding: 20px 0; /* Ajuste de espaciado interior */
     }
 
     .navegacion {
-        justify-content: flex-start;
+        justify-content: center;
         flex-direction: column;
         align-items: center;
     }
 
     .nav-item {
         margin: 5px 0;
+    }
+
+    .custom-navbar {
+        position: static; /* No fija la barra en pantallas pequeñas */
     }
 }

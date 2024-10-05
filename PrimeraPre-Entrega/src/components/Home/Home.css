@@ -67,8 +67,8 @@
   .boton-relojeria {
     width: 100%;
     height: 300px;
-    background-image: url("https://static.vecteezy.com/system/resources/previews/001/421/122/large_2x/watchmaker-replacing-a-battery-free-photo.jpg");
-    background-size: cover; /* Asegura que la imagen cubra todo el botón */
+    background-image: url("../../../public/img/Relojeria.jpg");
+    background-size: 100% 100%; /* Asegura que la imagen cubra todo el botón */
     background-position: center; /* Centra la imagen en el botón */
     background-repeat: no-repeat; /* Evita que la imagen se repita */
     color: white;
@@ -89,8 +89,8 @@
   .boton-telefono {
     width: 500px;
     height: 100%;
-    background-image: url("https://http2.mlstatic.com/D_NQ_NP_955811-MLA48183160276_112021-O.webp");
-    background-size: cover; /* Asegura que la imagen cubra todo el botón */
+    background-image: url("../../../public/img/Telefonia.jpg");
+    background-size: 100% 100%; /* Asegura que la imagen cubra todo el botón */
     background-position: center; /* Centra la imagen en el botón */
     background-repeat: no-repeat; /* Evita que la imagen se repita */
     color: black;
@@ -109,12 +109,12 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 40px;
-  margin: 10px;
+  margin: 15px;
   .boton-electronica {
     width: 260px;
     height: 200px;
-    background-image: url("https://image.made-in-china.com/202f0j00ocLGIhNPJQqp/2-in-1-Type-C-to-3-5-mm-Charger-Headphone-Audio-Jack-USB-C-Cable-for-Mobile-Phone.webp");
-    background-size: cover; /* Asegura que la imagen cubra todo el botón */
+    background-image: url("../../../public/img/Electronica.jpg");
+    background-size: 100% 100%; /* Asegura que la imagen cubra todo el botón */
     background-position: center; /* Centra la imagen en el botón */
     background-repeat: no-repeat; /* Evita que la imagen se repita */
     color: black;
@@ -128,8 +128,8 @@
   .boton-gamer {
     width: 260px;
     height: 200px;
-    background-image: url("https://media.es.wired.com/photos/6442f341a566376ee967ba24/master/pass/GettyImages-1424828162.jpg");
-    background-size: cover; /* Asegura que la imagen cubra todo el botón */
+    background-image: url("../../../public/img/Gaming.jpg");
+    background-size: 100% 100%; /* Asegura que la imagen cubra todo el botón */
     background-position: center; /* Centra la imagen en el botón */
     background-repeat: no-repeat; /* Evita que la imagen se repita */
     color: black;
@@ -170,16 +170,16 @@
     margin-left: auto; /* Centrando el contenedor */
     margin-right: auto; /* Centrando el contenedor */
   }
-  
+
   .maps {
     width: 100%;
     height: 100%;
     border-radius: 20px;
     border-style: solid;
     border-width: 5px;
-    border-color:gray;
+    border-color: gray;
   }
-}  
+}
 
 .titulo-redessociales h4 {
   font-size: 1.5rem;
