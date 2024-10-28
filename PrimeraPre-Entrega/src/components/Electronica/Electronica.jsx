@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useAuth } from '../../Contex/AuthContext';
+import './Electronica.css'
 
 function Electronica() {
   const [products, setProducts] = useState([]);
@@ -40,7 +41,7 @@ function Electronica() {
 
   // Renderizamos los productos electrónicos guardados en el estado
   return (
-    <div>
+    <div className='productos-electronica'>
       <div className="product-list">
         <h3>Lista de Productos Electrónicos</h3>
         {products.map((product) => (

@@ -30,13 +30,13 @@ function App() {
                
                 <Routes>
                     <Route path='/' element={<Home />} />
-                    <Route path='/electronica' element={<Electronica />} />
+                  <Route path='/electronica' element={<Electronica />} />
                     <Route path='/relojeria' element={<Relojeria />} />
                     <Route path='/telefonia' element={<Telefonia />} />
                     <Route path='/gamer' element={<Gamer />} />
                     <Route path='/login' element={<Login />} />
                     <Route path='/admin' element={<PrivateRoute element={<ProductManagement />} />} />
-                    <Route path="/categoria/:categoria" element={<CategoriaProductos />} />
+                    {/*<Route exact path='/categoria/:categoriaId' element={<CategoriaProductos />} />+*/}
                 </Routes>
                 <Footer/>
             </BrowserRouter>

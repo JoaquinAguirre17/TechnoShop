@@ -1,31 +1,52 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState } from 'react'; // Importa las funciones necesarias de React
 
-const AuthContext = createContext();
+// Crea un contexto para la autenticación
+const AuthContext = createContext(); 
 
+// Componente proveedor de autenticación
 export const AuthProvider = ({ children }) => {
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const [token, setToken] = useState(localStorage.getItem('token') || '');
+  // Estado para determinar si el usuario está autenticado
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-    const login = (newToken) => {
-        localStorage.setItem('token', newToken);
-        setToken(newToken);
-        setIsAuthenticated(true);
-    };
+  // Estado para almacenar el token JWT, inicia con el token almacenado en localStorage o una cadena vacía
+  const [token, setToken] = useState(localStorage.getItem('token') || '');
 
-    const logout = () => {
-        localStorage.removeItem('token');
-        setToken('');
-        setIsAuthenticated(false);
-    };
+  // Función para manejar el inicio de sesión
+  const login = (newToken) => {
+    // Almacena el nuevo token en localStorage
+    localStorage.setItem('token', newToken);
+    
+    // Actualiza el estado del token
+    setToken(newToken);
+    
+    // Cambia el estado de autenticación a verdadero
+    setIsAuthenticated(true);
+  };
 
-    const value = {
-        isAuthenticated,
-        token, // Agregamos el token aquí
-        login,
-        logout,
-    };
+  // Función para manejar el cierre de sesión
+  const logout = () => {
+    // Elimina el token de localStorage
+    localStorage.removeItem('token');
+    
+    // Restablece el estado del token a una cadena vacía
+    setToken('');
+    
+    // Cambia el estado de autenticación a falso
+    setIsAuthenticated(false);
+  };
 
-    return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+  // Define el valor que se proporcionará a los componentes que consumen este contexto
+  const value = {
+    isAuthenticated, // Estado que indica si el usuario está autenticado
+    token, // El token de autenticación
+    login, // Función para iniciar sesión
+    logout, // Función para cerrar sesión
+  };
+
+  // Proporciona el contexto a los componentes hijos
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
-export const useAuth = () => useContext(AuthContext);
+// Hook personalizado para usar el contexto de autenticación
+export const useAuth = () => useContext(AuthContext); 
+

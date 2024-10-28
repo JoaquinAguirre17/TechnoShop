@@ -11,7 +11,7 @@ const ProductManagement = () => {
     const [newProductImagePreview, setNewProductImagePreview] = useState('');
     const [percentageIncrease, setPercentageIncrease] = useState('');
 
-    const categorias = ["Electrónica", "Relojes", "Celulares"];
+    const categorias = ["Electrónica", "Relojeria", "Telefonia","Gamer"];
 
     useEffect(() => {
         const fetchProducts = async () => {
