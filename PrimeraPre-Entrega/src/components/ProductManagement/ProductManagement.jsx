@@ -22,7 +22,6 @@ const ProductManagement = () => {
         "Relojes": ["Montreal", "Digitales", "Niños", "Mallas"],
         "Celulares": ["Cargadores", "Accesorios", "Fundas", "Cables", "Vidrios-Hidrogel"]
     };
-    const categorias = ["Electrónica", "Relojeria", "Telefonia","Gamer"];
 
     useEffect(() => {
         const fetchProducts = async () => {
