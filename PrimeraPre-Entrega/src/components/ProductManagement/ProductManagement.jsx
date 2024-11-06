@@ -14,13 +14,15 @@ const ProductManagement = () => {
     const categorias = [
         "Electrónica",
         "Relojes",
-        "Celulares"
+        "Telefonia",
+        "Gamer"
     ];
 
     const subcategorias = {
         "Electrónica": ["Auriculares", "Iluminacion", "Adaptadores", "Pendrive", "MicroSD", "Parlantes", "Consolas", "Mouse", "Teclados", "WebCam"],
         "Relojes": ["Montreal", "Digitales", "Niños", "Mallas"],
-        "Celulares": ["Cargadores", "Accesorios", "Fundas", "Cables", "Vidrios-Hidrogel"]
+        "Telefonia": ["Cargadores", "Accesorios", "Fundas", "Cables", "Vidrios-Hidrogel"],
+        "Gamer":["Consolas","Mouse","Teclados","Web Cam"]
     };
 
     useEffect(() => {
@@ -45,6 +47,14 @@ const ProductManagement = () => {
 
         fetchProducts();
     }, []);
+    useEffect(() => {
+        const container = document.querySelector('.product-management-container');
+        if (selectedProduct) {
+            container.classList.add('actualizar-visible');
+        } else {
+            container.classList.remove('actualizar-visible');
+        }
+    }, [selectedProduct]);
 
     const handleAddProduct = async () => {
         const token = localStorage.getItem('token');
@@ -192,7 +202,7 @@ const ProductManagement = () => {
     return (
         <div className="product-management-container">
             {error && <p className="error-message">{error}</p>} {/* Mensaje de error */}
-            <div className="section">
+            <div className="añadirProducto">
                 <h3>Añadir Producto</h3>
                 <input
                     type="text"
@@ -214,10 +224,15 @@ const ProductManagement = () => {
                     onChange={(e) => setNewProduct({ ...newProduct, subcategoria: e.target.value })}
                 >
                     <option value="" disabled>Seleccionar Subcategoría</option>
-                    {newProduct.categoria && subcategorias[newProduct.categoria].map((subcategoria, index) => (
-                        <option key={index} value={subcategoria}>{subcategoria}</option>
-                    ))}
+                    {newProduct.categoria && subcategorias[newProduct.categoria]?.length > 0 ? (
+                        subcategorias[newProduct.categoria].map((subcategoria) => (
+                            <option key={subcategoria} value={subcategoria}>{subcategoria}</option>
+                        ))
+                    ) : (
+                        <option value="" disabled>No hay subcategorías disponibles</option>
+                    )}
                 </select>
+
                 <input
                     type="text"
                     placeholder="Descripción"
@@ -240,7 +255,7 @@ const ProductManagement = () => {
                 <button onClick={handleAddProduct}>Añadir Producto</button>
             </div>
 
-            <div className="section">
+            <div className="productoslogin">
                 <h3>Productos</h3>
                 <div className="product-cards-container">
                     {products.map(product => (
@@ -259,53 +274,69 @@ const ProductManagement = () => {
             </div>
 
             {selectedProduct && (
-                <div className="section">
-                    <h3>Actualizar Producto</h3>
-                    <input
-                        type="text"
-                        placeholder="Nombre del producto"
-                        value={selectedProduct.nombre}
-                        onChange={(e) => setSelectedProduct({ ...selectedProduct, nombre: e.target.value })}
-                    />
-                    <select
-                        value={selectedProduct.categoria}
-                        onChange={(e) => setSelectedProduct({ ...selectedProduct, categoria: e.target.value })}
-                    >
-                        <option value="" disabled>Seleccionar Categoría</option>
-                        {categorias.map((categoria, index) => (
-                            <option key={index} value={categoria}>{categoria}</option>
-                        ))}
-                    </select>
-                    <select
-                        value={selectedProduct.subcategoria}
-                        onChange={(e) => setSelectedProduct({ ...selectedProduct, subcategoria: e.target.value })}
-                    >
-                        <option value="" disabled>Seleccionar Subcategoría</option>
-                        {selectedProduct.categoria && subcategorias[selectedProduct.categoria] ? (
-                            subcategorias[selectedProduct.categoria].map((subcategoria, index) => (
-                                <option key={index} value={subcategoria}>{subcategoria}</option>
-                            ))
-                        ) : null}
-                    </select>
+                <div className="actualizarProductos">
+                    <div className='actualizarnombre'>
+                        <h3>Actualizar Producto</h3>
+                        <input
+                            type="text"
+                            placeholder="Nombre del producto"
+                            value={selectedProduct.nombre}
+                            onChange={(e) => setSelectedProduct({ ...selectedProduct, nombre: e.target.value })}
+                        />
+                    </div>
 
+                    <div className='actualizarcategoria'>
+                        <select
+                            value={selectedProduct.categoria}
+                            onChange={(e) => setSelectedProduct({ ...selectedProduct, categoria: e.target.value })}
+                        >
+                            <option value="" disabled>Seleccionar Categoría</option>
+                            {categorias.map((categoria, index) => (
+                                <option key={index} value={categoria}>{categoria}</option>
+                            ))}
+                        </select>
+                    </div>
+
+                    <div className='actualizarsubcategoria'>
+                        <select
+                            value={selectedProduct.subcategoria}
+                            onChange={(e) => setSelectedProduct({ ...selectedProduct, subcategoria: e.target.value })}
+                        >
+                            <option value="" disabled>Seleccionar Subcategoría</option>
+                            {selectedProduct.categoria && subcategorias[selectedProduct.categoria] ? (
+                                subcategorias[selectedProduct.categoria].map((subcategoria, index) => (
+                                    <option key={index} value={subcategoria}>{subcategoria}</option>
+                                ))
+                            ) : null}
+                        </select>
+                    </div>
+
+                    <div className='actualizardescripcion'>
                     <input
                         type="text"
                         placeholder="Descripción"
                         value={selectedProduct.descripcion}
                         onChange={(e) => setSelectedProduct({ ...selectedProduct, descripcion: e.target.value })}
                     />
+                    </div>
+
+                    <div className='actualizarprecio'>
                     <input
                         type="number"
                         placeholder="Precio del producto"
                         value={selectedProduct.precio}
                         onChange={(e) => setSelectedProduct({ ...selectedProduct, precio: e.target.value })}
                     />
+                    </div>
+
+                    <div className='actualizarimagen'>
                     <input
                         type="file"
                         accept="image/*"
                         onChange={handleImageChange}
                     />
                     {imagePreview && <img src={imagePreview} alt="Preview" className="image-preview" />}
+                    </div>
                     <button onClick={handleUpdateProduct}>Actualizar Producto</button>
                 </div>
             )}

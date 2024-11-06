@@ -31,30 +31,23 @@ function Home() {
                         </div>
                     </div>
 
-                    <div className="relojeriahome">
-                        <Link to="/relojeria">
-                            <button className="boton-relojeria">
-                            </button>
-                        </Link>
-                    </div>
-
-                    <div className="telefoniahome">
+                    <div className="botones-home">
                         <Link to="/telefonia">
-                            <button className="boton-telefono">
-                            </button>
+                            <button className="boton-telefono"></button>
                         </Link>
-                    </div>
-
-                    <div className="electronicaygamer">
                         <Link to="/electronica">
-                            <button className="boton-electronica">
-                            </button>
+                            <button className="boton-electronica"></button>
                         </Link>
                         <Link to="/gamer">
-                            <button className="boton-gamer">
-                            </button>
+                            <button className="boton-gamer"></button>
                         </Link>
+                        <Link to="/relojeria">
+                            <button className="boton-relojeria1"></button>
+                        </Link>
+
                     </div>
+
+
                     <div className='redessociales'>
                         <div className='titulo-redessociales'>
                             <h4>¡Comunicate con nosotros!</h4>
