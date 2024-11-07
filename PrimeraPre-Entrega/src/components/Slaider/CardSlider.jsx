@@ -1,49 +1,56 @@
-import React from 'react';
-import { Carousel, Card, Button, Row, Col } from 'react-bootstrap';
-import styles from './CardSlider.module.css'; // Importa los estilos del módulo
+import React, { useState, useEffect } from 'react';
+import { Carousel, Card, Row, Col } from 'react-bootstrap';
+import styles from './CardSlider.module.css';
 
 const CardSlider = () => {
   const products = [
-    { id: 1, title: 'Producto 1', image: 'https://via.placeholder.com/150', description: 'Descripción del Producto 1' },
-    { id: 2, title: 'Producto 2', image: 'https://via.placeholder.com/150', description: 'Descripción del Producto 2' },
-    { id: 3, title: 'Producto 3', image: 'https://via.placeholder.com/150', description: 'Descripción del Producto 3' },
-    { id: 4, title: 'Producto 4', image: 'https://via.placeholder.com/150', description: 'Descripción del Producto 4' },
-    { id: 5, title: 'Producto 5', image: 'https://via.placeholder.com/150', description: 'Descripción del Producto 5' },
-    { id: 6, title: 'Producto 6', image: 'https://via.placeholder.com/150', description: 'Descripción del Producto 6' },
-    { id: 7, title: 'Producto 7', image: 'https://via.placeholder.com/150', description: 'Descripción del Producto 7' },
-    { id: 8, title: 'Producto 8', image: 'https://via.placeholder.com/150', description: 'Descripción del Producto 8' },
-    { id: 9, title: 'Producto 9', image: 'https://via.placeholder.com/150', description: 'Descripción del Producto 9' },
-    { id: 10, title: 'Producto 10', image: 'https://via.placeholder.com/150', description: 'Descripción del Producto 10' },
-    { id: 11, title: 'Producto 11', image: 'https://via.placeholder.com/150', description: 'Descripción del Producto 11' },
-    { id: 12, title: 'Producto 12', image: 'https://via.placeholder.com/150', description: 'Descripción del Producto 12' },
-    { id: 13, title: 'Producto 13', image: 'https://via.placeholder.com/150', description: 'Descripción del Producto 13' },
-    { id: 14, title: 'Producto 14', image: 'https://via.placeholder.com/150', description: 'Descripción del Producto 14' },
-    { id: 15, title: 'Producto 15', image: 'https://via.placeholder.com/150', description: 'Descripción del Producto 15' },
-    { id: 16, title: 'Producto 16', image: 'https://via.placeholder.com/150', description: 'Descripción del Producto 16' },
-
-    // Agrega más productos según necesites
+    { id: 1, title: 'funda', image: 'https://via.placeholder.com/150', description: 'Descripción del funda 1' },
+    { id: 2, title: 'funda ', image: 'https://via.placeholder.com/150', description: 'Descripción del funda 2' },
+    { id: 3, title: 'funda ', image: 'https://via.placeholder.com/150', description: 'Descripción del funda 3' },
+    { id: 4, title: 'funda ', image: 'https://via.placeholder.com/150', description: 'Descripción del funda 4' },
+    { id: 5, title: 'funda ', image: 'https://via.placeholder.com/150', description: 'Descripción del funda 5' },
+    { id: 6, title: 'funda ', image: 'https://via.placeholder.com/150', description: 'Descripción del funda 6' },
+    { id: 7, title: 'funda ', image: 'https://via.placeholder.com/150', description: 'Descripción del funda 7' },
+    { id: 8, title: 'funda ', image: 'https://via.placeholder.com/150', description: 'Descripción del funda 8' },
+    { id: 9, title: 'funda ', image: 'https://via.placeholder.com/150', description: 'Descripción del funda 9' },
+    { id: 10, title: 'funda', image: 'https://via.placeholder.com/150', description: 'Descripción del funda 10' },
+    { id: 11, title: 'funda', image: 'https://via.placeholder.com/150', description: 'Descripción del funda 11' },
+    { id: 12, title: 'funda', image: 'https://via.placeholder.com/150', description: 'Descripción del Producto 12' },
   ];
 
-  // Agrupar los productos en lotes de 3 o 4 para mostrarlos juntos en cada slide
-  const chunkSize = 4; // Cambia a 4 si deseas mostrar 4 cards a la vez
+  const [chunkSize, setChunkSize] = useState(4); // Tamaño inicial para dispositivos grandes
+
+  useEffect(() => {
+    const updateChunkSize = () => {
+      if (window.innerWidth < 576) setChunkSize(1);
+      else if (window.innerWidth < 768) setChunkSize(2);
+      else if (window.innerWidth < 992) setChunkSize(3);
+      else setChunkSize(4);
+    };
+
+    window.addEventListener('resize', updateChunkSize);
+    updateChunkSize();
+
+    return () => window.removeEventListener('resize', updateChunkSize);
+  }, []);
+
   const groupedProducts = [];
   for (let i = 0; i < products.length; i += chunkSize) {
     groupedProducts.push(products.slice(i, i + chunkSize));
   }
 
   return (
-    <Carousel interval={3000}>
+    <Carousel interval={3000} className="mb-4">
       {groupedProducts.map((group, index) => (
         <Carousel.Item key={index}>
-          <Row>
+          <Row className="justify-content-center">
             {group.map((product) => (
-              <Col key={product.id}>
+              <Col key={product.id} xs={12} sm={6} md={4} lg={3}>
                 <Card className={styles.cardSlider}>
-                  <Card.Img variant="top" src={product.image} />
+                  <Card.Img className={styles.cardImg} variant="top" src={product.image} />
                   <Card.Body>
                     <Card.Title className={styles.cardTitle}>{product.title}</Card.Title>
                     <Card.Text className={styles.cardText}>{product.description}</Card.Text>
-                    <Button variant="primary">Ver Producto</Button>
                   </Card.Body>
                 </Card>
               </Col>
@@ -56,4 +63,6 @@ const CardSlider = () => {
 };
 
 export default CardSlider;
+
+
 

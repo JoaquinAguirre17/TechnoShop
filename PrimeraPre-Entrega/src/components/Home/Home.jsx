@@ -11,7 +11,7 @@ function Home() {
                 <div id="carouselExampleInterval" className="carousel slide" data-bs-ride="carousel">
                     <div className="carousel-inner">
                         <div className="carousel-item active" data-bs-interval="1000">
-                            <img src="../../../public/img/carrusel.jpg" className="d-block w-100" alt="..."></img>
+                            <img src="/img/carrusel.jpg" className="d-block w-100" alt="..."></img>
                         </div>
                     </div>
                 </div>
@@ -82,23 +82,23 @@ function Home() {
 
                     <div className='evento1'>
                         <div className='titulo-evento1'>
-                            <h3 className='mesmama'>MES DE MAMÁ</h3>
+                            <h3 className='mesmama'>¡LLEGA LA NAVIDAD A NUESTRO LOCAL!</h3>
                         </div>
                         <div className='slider'>
                             <CardSlider />
                         </div>
                     </div>
                     <div className='marcas'>
-                        <img className='marcaimg' src="../../../../public/img/Marcas-01.png" alt="" />
-                        <img className='marcaimg' src="../../../../public/img/Marcas-02.png" alt="" />
-                        <img className='marcaimg' src="../../../../public/img/Marcas-03.png" alt="" />
-                        <img className='marcaimg' src="../../../../public/img/Marcas-04.png" alt="" />
-                        <img className='marcaimg' src="../../../../public/img/Marcas-05.png" alt="" />
-                        <img className='marcaimg' src="../../../../public/img/Marcas-06.png" alt="" />
-                        <img className='marcaimg' src="../../../../public/img/Marcas-07.png" alt="" />
-                        <img className='marcaimg' src="../../../../public/img/Marcas-08.png" alt="" />
-                        <img className='marcaimg' src="../../../../public/img/Marcas-09.png" alt="" />
-                        <img className='marcaimg' src="../../../../public/img/Marcas-10.png" alt="" />
+                        <img className='marcaimg' src="/img/Marcas-01.png" alt="" />
+                        <img className='marcaimg' src="/img/Marcas-02.png" alt="" />
+                        <img className='marcaimg' src="/img/Marcas-03.png" alt="" />
+                        <img className='marcaimg' src="/img/Marcas-04.png" alt="" />
+                        <img className='marcaimg' src="/img/Marcas-05.png" alt="" />
+                        <img className='marcaimg' src="/img/Marcas-06.png" alt="" />
+                        <img className='marcaimg' src="/img/Marcas-07.png" alt="" />
+                        <img className='marcaimg' src="/img/Marcas-08.png" alt="" />
+                        <img className='marcaimg' src="/img/Marcas-09.png" alt="" />
+                        <img className='marcaimg' src="/img/Marcas-10.png" alt="" />
                     </div>
                 </div>
             </div>

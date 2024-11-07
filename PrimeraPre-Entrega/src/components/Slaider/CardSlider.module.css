@@ -1,15 +1,57 @@
 /* CardSlider.module.css */
+
+/* Asegúrate de que las tarjetas tengan un buen espacio entre ellas */
 .cardSlider {
-  margin: 10px ;
+  margin: 10px auto; /* Centramos la tarjeta */
+  min-height: 220px; /* Altura mínima para todas las pantallas */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.3s ease;
+  border-radius: 10px; /* Bordes redondeados */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
+.cardSlider:hover {
+  transform: scale(1.05);
 }
 
 .cardTitle {
-  color: #333;
+  color: #f1ecec;
   text-align: center;
+  font-weight: bold;
 }
 
-.cardText {
-  font-size: 0.9rem;
+/* Ajustes para imágenes */
+.cardImg {
+  width: 100%; /* La imagen ocupará el 100% del ancho de la tarjeta */
+  height: 150px; /* Establecemos una altura constante para las imágenes */
+  object-fit: cover; /* Esto asegura que la imagen no se distorsione */
 }
 
-/* Opcional: Puedes agregar más estilos aquí para mejorar la apariencia */
+/* Ajustes para la vista móvil */
+@media (max-width: 576px) {
+  .cardSlider {
+    min-height: 300px; /* Hacemos las tarjetas un poco más grandes */
+    width: 90%; /* Hacemos la tarjeta un poco más pequeña para que no se corte */
+    margin: 15px auto; /* Centramos la tarjeta con margen */
+  }
+
+  .cardImg {
+    height: 200px; /* Ajustamos la imagen para que tenga una altura mayor en móvil */
+  }
+
+  .cardText {
+    font-size: 0.9rem; /* Ajustamos el tamaño del texto */
+  }
+}
+
+/* Ajustes para pantallas medianas */
+@media (max-width: 768px) {
+  .cardSlider {
+    min-height: 300px; /* Ajuste para pantallas medianas */
+    width: 90%; /* Hacemos las tarjetas un poco más pequeñas */
+  }
+}
+
+
