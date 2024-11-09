@@ -20,7 +20,7 @@ const Productos = () => {
             }
 
             try {
-                const response = await axios.get('http://localhost:5000/api/productos/publicos', {
+                const response = await axios.get('https://tecnoshopback-4fs3.onrender.com/api/productos/publicos', {
                     headers: { Authorization: `Bearer ${token}` },
                 });
 
@@ -69,7 +69,7 @@ const Productos = () => {
                 {products.length > 0 ? (
                     products.map(product => (
                         <div key={product._id} className="product-card">
-                            <img src={`http://localhost:5000/${product.imagen}`} alt={product.nombre} className="product-image" />
+                            <img src={`https://tecnoshopback-4fs3.onrender.com/${product.imagen}`} alt={product.nombre} className="product-image" />
                             <div className="product-info">
                                 <h4>{product.nombre}</h4>
                                 <p>{product.descripcion}</p>
