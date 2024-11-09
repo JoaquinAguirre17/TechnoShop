@@ -17,22 +17,25 @@ const Login = () => {
             const response = await fetch('https://tecnoshopback-4fs3.onrender.com/api/auth/login', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ username, password })
+                body: JSON.stringify({ username, password }),
             });
-            const data = await response.json();
+    
             if (response.ok) {
+                const data = await response.json(); // Ahora puedes acceder al JSON
                 login(data.token); // Llama a login con el token recibido
                 setMessage('Login successful.');
                 navigate('/admin'); // Redirige a la página con permisos
             } else {
+                const data = await response.json(); // Obtén el mensaje de error del servidor
                 setMessage(`Error: ${data.message}`);
             }
         } catch (error) {
             setMessage(`Error: ${error.message}`);
         }
     };
+    
 
     return (
         <div className="login-container">
