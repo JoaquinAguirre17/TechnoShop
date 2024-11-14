@@ -10,7 +10,7 @@
 
 /* Tarjeta individual del producto */
 .product-card {
-    min-width: 200px; /* Tamaño mínimo para que funcione bien en una fila horizontal */
+    width: 250px; /* Ancho fijo para las tarjetas */
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -41,15 +41,25 @@
     color: #333;
 }
 
+/* Descripción del producto con ajuste de texto */
 .product-info p {
     color: #666;
     font-size: 1rem;
     margin: 5px 0;
+    word-wrap: break-word; /* Permite que las palabras largas se dividan */
+    white-space: normal; /* Asegura que el texto se ajuste al contenedor */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Añade puntos suspensivos si el texto es muy largo */
+    max-height: 60px; /* Limita la altura para evitar desbordes excesivos */
 }
 
+/* Estilos para el último párrafo (precio) */
 .product-info p:last-child {
     font-weight: bold;
     color: #000;
+    white-space: nowrap; /* Mantiene el texto en una sola línea */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Añade puntos suspensivos si es necesario */
 }
 
 /* Estilos para el encabezado */
@@ -58,4 +68,17 @@ h2 {
     color: #222;
     text-align: center;
     margin-bottom: 20px;
+}
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+}
+
+.error-message {
+    color: red;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 20px;
 }

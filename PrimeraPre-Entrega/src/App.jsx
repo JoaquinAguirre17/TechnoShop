@@ -8,6 +8,7 @@ import PrivateRoute from './components/login/PrivateRoute';
 import Productos from './components/Productos/Productos';
 import { AuthProvider } from './Contex/AuthContext'; // Asegúrate de que la ruta sea correcta
 import './App.css';
+import ProductDetail from './components/ProductDetail/ProductDetail';
 
 function App() {
     return (
@@ -15,7 +16,7 @@ function App() {
             <Router>
                 <NavBar />
                 <div className='presentacionhome'>
-                    <img className='imgpresentacion' src="img/fondo1.png" alt="" />
+                    <img className='imgpresentacion' src="/img/fondo1.png" alt="" />
                     <h1 className='presentacion'>TECHNO SHOP</h1>
                 </div>
                 <Routes>
@@ -25,6 +26,7 @@ function App() {
                     {/* Ruta dinámica para categorías y subcategorías */}
                     <Route path='/:category' element={<Productos />} />
                     <Route path='/:category/:subcategory' element={<Productos />} />
+                    <Route path="/detalle/:id" element={<ProductDetail />} />
                 </Routes>
                 <Footer />
             </Router>

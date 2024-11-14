@@ -34,7 +34,7 @@ const ProductManagement = () => {
             }
 
             try {
-                const response = await axios.get('https://tecnoshopback-4fs3.onrender.com/api/productos/', {
+                const response = await axios.get('https://tecnoshopback-1.onrender.com/api/productos/', {
                     headers: {
                         'Authorization': `Bearer ${token}`,
                     },
@@ -87,7 +87,7 @@ const ProductManagement = () => {
                 formData.append('imagen', newProduct.imagen);
             }
 
-            const response = await axios.post('https://tecnoshopback-4fs3.onrender.com/api/productos/crear', formData, {
+            const response = await axios.post('https://tecnoshopback-1.onrender.com/api/productos/crear', formData, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                     'Content-Type': 'multipart/form-data',
@@ -106,7 +106,7 @@ const ProductManagement = () => {
 
     const handleCardUpdate = (product) => {
         setSelectedProduct(product);
-        setImagePreview(product.imagen ? `https://tecnoshopback-4fs3.onrender.com/${product.imagen}` : '');
+        setImagePreview(product.imagen ? `https://tecnoshopback-1.onrender.com/${product.imagen}` : '');
     };
 
     const handleUpdateProduct = async () => {
@@ -139,7 +139,7 @@ const ProductManagement = () => {
                 formData.append('imagen', selectedProduct.imagen);
             }
 
-            const response = await axios.put(`https://tecnoshopback-4fs3.onrender.com/api/productos/${selectedProduct._id}`, formData, {
+            const response = await axios.put(`https://tecnoshopback-1.onrender.com/api/productos/${selectedProduct._id}`, formData, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                     'Content-Type': 'multipart/form-data',
@@ -169,7 +169,7 @@ const ProductManagement = () => {
         }
 
         try {
-            const response = await axios.delete(`https://tecnoshopback-4fs3.onrender.com/api/productos/${productId}`, {
+            const response = await axios.delete(`https://tecnoshopback-1.onrender.com/api/productos/${productId}`, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                 },
@@ -260,7 +260,7 @@ const ProductManagement = () => {
                 <div className="product-cards-container">
                     {products.map(product => (
                         <div key={product._id} className="product-card">
-                            <img src={`https://tecnoshopback-4fs3.onrender.com/${product.imagen}`} alt={product.nombre} className="product-image" />
+                            <img src={`https://tecnoshopback-1.onrender.com/${product.imagen}`} alt={product.nombre} className="product-image" />
                             <div className="product-info">
                                 <h4>{product.nombre}</h4>
                                 <p>{product.descripcion}</p>

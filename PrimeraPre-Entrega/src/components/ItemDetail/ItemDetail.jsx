@@ -19,7 +19,7 @@ function ItemDetail() {
         const fetchProduct = async () => {
             const token = localStorage.getItem('token'); // Obtener el token del almacenamiento local
             try {
-                const response = await axios.get(`http://localhost:5000/api/productos/${prodId}`, {
+                const response = await axios.get(`https://tecnoshopback-1.onrender.com/api/productos/${_id}`, {
                     headers: {
                         'Authorization': `Bearer ${token}`, // Incluir el token en las cabeceras
                     },

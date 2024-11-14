@@ -1,28 +1,30 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import ReactLoading from 'react-loading';
 import axios from 'axios';
 import { useAuth } from '../../Contex/AuthContext';
 import './Productos.css';
+import BotonComponente from '../Boton/BotonComponente';
 
 const Productos = () => {
-    const { category, subcategory } = useParams();  // Obtenemos la categoría y subcategoría de la URL
-    const { token } = useAuth();  // Token de autenticación
+    const { category, subcategory } = useParams(); // Obtenemos la categoría y subcategoría de la URL
+    const { token } = useAuth(); // Token de autenticación
     const [products, setProducts] = useState([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchProducts = async () => {
-            if (!token) {
-                setError('Token no encontrado. Inicia sesión nuevamente.');
-                setLoading(false);
-                return;
-            }
+            setLoading(true);
+            setError(null);
 
             try {
+                // Configuración de headers opcional (solo si el token está disponible)
+                const headers = token ? { Authorization: `Bearer ${token}` } : {};
+
                 // Realizamos la solicitud para obtener los productos
-                const response = await axios.get('https://tecnoshopback-4fs3.onrender.com/api/productos/publicos', {
-                    headers: { Authorization: `Bearer ${token}` },
+                const response = await axios.get('https://tecnoshopback-1.onrender.com/api/productos/publicos', {
+                    headers,
                 });
 
                 console.log('Productos obtenidos:', response.data);
@@ -30,22 +32,27 @@ const Productos = () => {
                 console.log('Subcategoría:', subcategory);
 
                 // Normalizamos las categorías y subcategorías
-                const normalizedCategoryFilter = category ? category.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase() : '';
-                const normalizedSubcategoryFilter = subcategory ? subcategory.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase() : '';
+                const normalizedCategoryFilter = category
+                    ? category.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase()
+                    : '';
+                const normalizedSubcategoryFilter = subcategory
+                    ? subcategory.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase()
+                    : '';
 
                 // Filtramos los productos por categoría y subcategoría
                 const filteredProducts = response.data.filter((product) => {
-                    const normalizedCategory = product.categoria.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
-                    const normalizedSubcategory = product.subcategoria ? product.subcategoria.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase() : '';
+                    const normalizedCategory = product.categoria
+                        .normalize("NFD")
+                        .replace(/[\u0300-\u036f]/g, "")
+                        .toLowerCase();
+                    const normalizedSubcategory = product.subcategoria
+                        ? product.subcategoria.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase()
+                        : '';
 
                     // Comprobamos si el producto coincide con la categoría y subcategoría
                     const isMainCategoryMatch = normalizedCategory === normalizedCategoryFilter;
                     const isSubCategoryMatch = normalizedSubcategory === normalizedSubcategoryFilter;
 
-                    console.log(`Producto: ${product.nombre}, Categoría: ${product.categoria}, Subcategoría: ${product.subcategoria}`);
-                    console.log(`Coincide con categoría: ${isMainCategoryMatch}, Coincide con subcategoría: ${isSubCategoryMatch}`);
-
-                    // Si se proporciona subcategoría, se verifica también; si no, solo por categoría
                     return isMainCategoryMatch && (isSubCategoryMatch || !subcategory);
                 });
 
@@ -60,13 +67,19 @@ const Productos = () => {
         };
 
         fetchProducts();
-    }, [token, category, subcategory]);  // Se vuelve a ejecutar cuando cambian estos valores
+    }, [token, category, subcategory]); // Se vuelve a ejecutar cuando cambian estos valores
 
-    // Si está cargando, mostramos el mensaje de carga
-    if (loading) return <p>Cargando...</p>;
+    // Si está cargando, mostramos el componente ReactLoading
+    if (loading) {
+        return (
+            <div className="loading-container">
+                <ReactLoading type="spin" color="orange" height={200} width={200} />
+            </div>
+        );
+    }
 
     // Si hay error, lo mostramos
-    if (error) return <p>{error}</p>;
+    if (error) return <p className="error-message">{error}</p>;
 
     return (
         <div className="product-cards-wrapper">
@@ -75,12 +88,16 @@ const Productos = () => {
                 {products.length > 0 ? (
                     products.map((product) => (
                         <div key={product._id} className="product-card">
-                            <img src={`https://tecnoshopback-4fs3.onrender.com/${product.imagen}`} alt={product.nombre} className="product-image" />
+                            <img
+                                src={`https://tecnoshopback-1.onrender.com/${product.imagen}`}
+                                alt={product.nombre}
+                                className="product-image"
+                            />
                             <div className="product-info">
                                 <h4>{product.nombre}</h4>
-                                <p>{product.descripcion}</p>
                                 <p>Precio: ${product.precio}</p>
                             </div>
+                            <BotonComponente nombre={'Ver Detalle'} ruta={`/detalle/${product._id}`} />
                         </div>
                     ))
                 ) : (
@@ -92,4 +109,3 @@ const Productos = () => {
 };
 
 export default Productos;
-

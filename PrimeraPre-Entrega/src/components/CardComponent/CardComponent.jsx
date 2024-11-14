@@ -4,7 +4,7 @@ import './CardComponent.css'
 import BotonComponente from '../Boton/BotonComponente'
 
 
-function CardComponent({ imagen, titulo,descripcion,idProd }) {
+function CardComponent({ imagen, titulo,descripcion,_id }) {
 
     /* -------------------------------------------------------------------------- */
 
@@ -18,7 +18,7 @@ function CardComponent({ imagen, titulo,descripcion,idProd }) {
                     <h3 className="card-title">{titulo}</h3>
                     <p className="card-text">{descripcion}</p>
                     <ul className='botones'>
-                        <BotonComponente nombre={'Ver Detalle'} ruta={`/detalle/${idProd}`} />
+                        <BotonComponente nombre={'Ver Detalle'} ruta={`/detalle/${_id}`} />
                     </ul>
                 </div>
             </div>
