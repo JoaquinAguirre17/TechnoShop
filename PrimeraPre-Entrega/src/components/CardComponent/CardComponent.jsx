@@ -17,9 +17,6 @@ function CardComponent({ imagen, titulo,descripcion,_id }) {
                 <div className="card-body">
                     <h3 className="card-title">{titulo}</h3>
                     <p className="card-text">{descripcion}</p>
-                    <ul className='botones'>
-                        <BotonComponente nombre={'Ver Detalle'} ruta={`/detalle/${_id}`} />
-                    </ul>
                 </div>
             </div>
         </>
