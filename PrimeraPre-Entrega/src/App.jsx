@@ -16,8 +16,7 @@ function App() {
             <Router>
                 <NavBar />
                 <div className='presentacionhome'>
-                    <img className='imgpresentacion' src="/img/fondo1.png" alt="" />
-                    <h1 className='presentacion'>TECHNO SHOP</h1>
+                    <img className='imgpresentacion' src="/img/Logotipo.png" alt="" />
                 </div>
                 <Routes>
                     <Route path='/' element={<Home />} />

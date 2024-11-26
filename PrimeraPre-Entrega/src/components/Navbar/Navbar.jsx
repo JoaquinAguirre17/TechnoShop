@@ -72,6 +72,9 @@ const NavBar = () => {
                     <LinkContainer to="/telefonia/templados-hidrogel/">
                         <NavDropdown.Item>Vidrios-Hidrogel</NavDropdown.Item>
                     </LinkContainer>
+                    <LinkContainer to="/telefonia/soporte-auto/">
+                        <NavDropdown.Item>Soporte-Auto</NavDropdown.Item>
+                    </LinkContainer>
                 </NavDropdown>
                 <NavDropdown title="GAMER" className="gamer-nav-dropdown">
                     <LinkContainer to="/gamer">
@@ -88,6 +91,9 @@ const NavBar = () => {
                     </LinkContainer>
                     <LinkContainer to="/gamer/web-cam/">
                         <NavDropdown.Item>Web Cam</NavDropdown.Item>
+                    </LinkContainer>
+                    <LinkContainer to="/gamer/cables-consolas/">
+                        <NavDropdown.Item>Cables-Consolas</NavDropdown.Item>
                     </LinkContainer>
                 </NavDropdown>
                 <LinkContainer to="/login">

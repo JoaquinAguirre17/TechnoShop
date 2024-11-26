@@ -47,9 +47,9 @@ const ProductDetail = () => {
         <div className="product-detail-container">
             <div className="product-detail-card">
                 <img
-                    src={`https://tecnoshopback-1.onrender.com/${product.imagen}`}
+                    src={product.imagen.startsWith('http') ? product.imagen : `https://tecnoshopback-1.onrender.com/${product.imagen}`}
                     alt={product.nombre}
-                    className="product-detail-image"
+                    className="product-image"
                 />
                 <div className="product-detail-info">
                     <h2>{product.nombre}</h2>

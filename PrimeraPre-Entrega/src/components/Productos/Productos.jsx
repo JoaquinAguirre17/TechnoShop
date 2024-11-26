@@ -97,8 +97,9 @@ const Productos = () => {
             <div className="product-cards-container">
                 {products.map((product) => (
                     <div key={product._id} className="product-card">
+                        {/* Verificamos si la imagen es una URL completa */}
                         <img
-                            src={`https://tecnoshopback-1.onrender.com/${product.imagen}`}
+                            src={product.imagen.startsWith('http') ? product.imagen : `https://tecnoshopback-1.onrender.com/${product.imagen}`}
                             alt={product.nombre}
                             className="product-image"
                         />

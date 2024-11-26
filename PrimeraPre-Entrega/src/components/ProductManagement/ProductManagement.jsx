@@ -5,11 +5,12 @@ import './ProductManagement.css';
 
 const ProductManagement = () => {
     const [products, setProducts] = useState([]);
-    const [newProduct, setNewProduct] = useState({ nombre: '', descripcion: '', precio: '', imagen: null, categoria: '', subcategoria: '' });
+    const [newProduct, setNewProduct] = useState({ nombre: '', descripcion: '', precio: '', imagen: '', categoria: '', subcategoria: '' });
     const [selectedProduct, setSelectedProduct] = useState(null);
     const [imagePreview, setImagePreview] = useState('');
     const [newProductImagePreview, setNewProductImagePreview] = useState('');
-    const [error, setError] = useState(null); // Para manejar errores
+    const [error, setError] = useState(null);
+    const [isEditing, setIsEditing] = useState(false); // Estado para controlar la edición
 
     const categorias = [
         "Electrónica",
@@ -19,10 +20,10 @@ const ProductManagement = () => {
     ];
 
     const subcategorias = {
-        "Electrónica": ["Auriculares", "Iluminacion", "Adaptadores", "Pendrive", "MicroSD", "Parlantes", "Consolas", "Mouse", "Teclados", "WebCam"],
+        "Electrónica": ["Auriculares", "Iluminacion", "Adaptadores", "Pendrive", "MicroSD", "Parlantes"],
         "Relojes": ["Montreal", "Digitales", "Niños", "Mallas"],
-        "Telefonia": ["Cargadores", "Accesorios", "Fundas", "Cables", "Vidrios-Hidrogel"],
-        "Gamer":["Consolas","Mouse","Teclados","Web Cam"]
+        "Telefonia": ["Cargadores", "Accesorios", "Fundas", "Cables", "Vidrios-Hidrogel", "Soporte-Auto"],
+        "Gamer": ["Consolas", "Mouse", "Teclados", "Web Cam", "Cables-Consolas"]
     };
 
     useEffect(() => {
@@ -47,14 +48,18 @@ const ProductManagement = () => {
 
         fetchProducts();
     }, []);
+
     useEffect(() => {
-        const container = document.querySelector('.product-management-container');
-        if (selectedProduct) {
-            container.classList.add('actualizar-visible');
-        } else {
-            container.classList.remove('actualizar-visible');
+        if (newProduct.imagen) {
+            setNewProductImagePreview(newProduct.imagen); // Actualizar la vista previa
         }
-    }, [selectedProduct]);
+    }, [newProduct.imagen]);
+
+    useEffect(() => {
+        if (selectedProduct?.imagen) {
+            setImagePreview(selectedProduct.imagen); // Actualizar la vista previa cuando se edite un producto
+        }
+    }, [selectedProduct?.imagen]);
 
     const handleAddProduct = async () => {
         const token = localStorage.getItem('token');
@@ -71,8 +76,7 @@ const ProductManagement = () => {
                 return;
             }
 
-            // Validar campos requeridos
-            if (!newProduct.nombre || !newProduct.precio || !newProduct.descripcion) {
+            if (!newProduct.nombre || !newProduct.precio || !newProduct.descripcion || !newProduct.imagen) {
                 setError('Por favor, completa todos los campos requeridos.');
                 return;
             }
@@ -83,9 +87,7 @@ const ProductManagement = () => {
             formData.append('precio', newProduct.precio);
             formData.append('categoria', newProduct.categoria);
             formData.append('subcategoria', newProduct.subcategoria);
-            if (newProduct.imagen) {
-                formData.append('imagen', newProduct.imagen);
-            }
+            formData.append('imagen', newProduct.imagen);
 
             const response = await axios.post('https://tecnoshopback-1.onrender.com/api/productos/crear', formData, {
                 headers: {
@@ -95,9 +97,9 @@ const ProductManagement = () => {
             });
 
             setProducts([...products, response.data]);
-            setNewProduct({ nombre: '', descripcion: '', precio: '', imagen: null, categoria: '', subcategoria: '' });
+            setNewProduct({ nombre: '', descripcion: '', precio: '', imagen: '', categoria: '', subcategoria: '' });
             setNewProductImagePreview('');
-            setError(null); // Limpiar el mensaje de error
+            setError(null);
         } catch (error) {
             console.error('Failed to add product', error);
             setError('Hubo un problema al agregar el producto.');
@@ -106,7 +108,8 @@ const ProductManagement = () => {
 
     const handleCardUpdate = (product) => {
         setSelectedProduct(product);
-        setImagePreview(product.imagen ? `https://tecnoshopback-1.onrender.com/${product.imagen}` : '');
+        setIsEditing(true); // Activar la edición
+        setImagePreview(product.imagen ? product.imagen : '');
     };
 
     const handleUpdateProduct = async () => {
@@ -135,9 +138,7 @@ const ProductManagement = () => {
             formData.append('descripcion', selectedProduct.descripcion);
             formData.append('categoria', selectedProduct.categoria);
             formData.append('subcategoria', selectedProduct.subcategoria);
-            if (selectedProduct.imagen && typeof selectedProduct.imagen === 'object') {
-                formData.append('imagen', selectedProduct.imagen);
-            }
+            formData.append('imagen', selectedProduct.imagen);
 
             const response = await axios.put(`https://tecnoshopback-1.onrender.com/api/productos/${selectedProduct._id}`, formData, {
                 headers: {
@@ -148,196 +149,164 @@ const ProductManagement = () => {
 
             setProducts(products.map(p => p._id === response.data._id ? response.data : p));
             setSelectedProduct(null);
+            setIsEditing(false); // Desactivar la edición
             setImagePreview('');
-            setError(null); // Limpiar el mensaje de error
+            setError(null);
         } catch (error) {
             console.error('Failed to update product', error);
             setError('Hubo un problema al actualizar el producto.');
         }
     };
 
-    const handleDeleteProduct = async (productId) => {
+    const handleDeleteProduct = async (id) => {
         const token = localStorage.getItem('token');
         if (!token) {
             console.error('No token found');
             return;
         }
 
-        if (!productId) {
-            console.error('Product not selected or missing ID');
-            return;
-        }
-
         try {
-            const response = await axios.delete(`https://tecnoshopback-1.onrender.com/api/productos/${productId}`, {
+            const decodedToken = jwtDecode(token);
+            const currentTime = Date.now() / 1000;
+            if (decodedToken.exp < currentTime) {
+                console.error('Token expired');
+                return;
+            }
+
+            await axios.delete(`https://tecnoshopback-1.onrender.com/api/productos/${id}`, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                 },
             });
 
-            setProducts(products.filter(p => p._id !== productId));
-            setError(null); // Limpiar el mensaje de error
+            // Eliminar producto de la lista local
+            setProducts(products.filter(product => product._id !== id));
         } catch (error) {
             console.error('Failed to delete product', error);
             setError('Hubo un problema al eliminar el producto.');
         }
     };
 
-    const handleNewProductImageChange = (e) => {
-        const file = e.target.files[0];
-        if (file) {
-            setNewProduct({ ...newProduct, imagen: file });
-            setNewProductImagePreview(URL.createObjectURL(file));
-        }
-    };
-
-    const handleImageChange = (e) => {
-        const file = e.target.files[0];
-        if (file) {
-            setSelectedProduct({ ...selectedProduct, imagen: file });
-            setImagePreview(URL.createObjectURL(file));
-        }
-    };
-
     return (
-        <div className="product-management-container">
-            {error && <p className="error-message">{error}</p>} {/* Mensaje de error */}
-            <div className="añadirProducto">
-                <h3>Añadir Producto</h3>
-                <input
-                    type="text"
-                    placeholder="Nombre del producto"
-                    value={newProduct.nombre}
-                    onChange={(e) => setNewProduct({ ...newProduct, nombre: e.target.value })}
-                />
-                <select
-                    value={newProduct.categoria}
-                    onChange={(e) => setNewProduct({ ...newProduct, categoria: e.target.value })}
-                >
-                    <option value="" disabled>Seleccionar Categoría</option>
-                    {categorias.map((categoria, index) => (
-                        <option key={index} value={categoria}>{categoria}</option>
-                    ))}
-                </select>
-                <select
-                    value={newProduct.subcategoria}
-                    onChange={(e) => setNewProduct({ ...newProduct, subcategoria: e.target.value })}
-                >
-                    <option value="" disabled>Seleccionar Subcategoría</option>
-                    {newProduct.categoria && subcategorias[newProduct.categoria]?.length > 0 ? (
-                        subcategorias[newProduct.categoria].map((subcategoria) => (
-                            <option key={subcategoria} value={subcategoria}>{subcategoria}</option>
-                        ))
-                    ) : (
-                        <option value="" disabled>No hay subcategorías disponibles</option>
-                    )}
-                </select>
+        <div className={`product-management-container ${isEditing ? 'actualizar-visible' : ''}`}>
+            {error && <p className="error-message">{error}</p>}
 
-                <input
-                    type="text"
-                    placeholder="Descripción"
-                    value={newProduct.descripcion}
-                    onChange={(e) => setNewProduct({ ...newProduct, descripcion: e.target.value })}
-                />
-                <input
-                    type="number"
-                    placeholder="Precio del producto"
-                    value={newProduct.precio}
-                    onChange={(e) => setNewProduct({ ...newProduct, precio: e.target.value })}
-                />
-                <input
-                    type="file"
-                    name='imagen'
-                    accept="image/*"
-                    onChange={handleNewProductImageChange}
-                />
-                {newProductImagePreview && <img src={newProductImagePreview} alt="Preview" className="image-preview" />}
-                <button onClick={handleAddProduct}>Añadir Producto</button>
-            </div>
+            {/* Formulario para añadir productos */}
+            {!isEditing && (
+                <div className="añadirProducto">
+                    <h3>Añadir Producto</h3>
+                    <input
+                        type="text"
+                        placeholder="Nombre del producto"
+                        value={newProduct.nombre}
+                        onChange={(e) => setNewProduct({ ...newProduct, nombre: e.target.value })}
+                    />
+                    <select
+                        value={newProduct.categoria}
+                        onChange={(e) => setNewProduct({ ...newProduct, categoria: e.target.value })}
+                    >
+                        <option value="" disabled>Seleccionar Categoría</option>
+                        {categorias.map((categoria, index) => (
+                            <option key={index} value={categoria}>{categoria}</option>
+                        ))}
+                    </select>
+                    <select
+                        value={newProduct.subcategoria}
+                        onChange={(e) => setNewProduct({ ...newProduct, subcategoria: e.target.value })}
+                    >
+                        <option value="" disabled>Seleccionar Subcategoría</option>
+                        {newProduct.categoria && subcategorias[newProduct.categoria]?.length > 0 ? (
+                            subcategorias[newProduct.categoria].map((subcategoria) => (
+                                <option key={subcategoria} value={subcategoria}>{subcategoria}</option>
+                            ))
+                        ) : (
+                            <option value="" disabled>No hay subcategorías disponibles</option>
+                        )}
+                    </select>
 
-            <div className="productoslogin">
-                <h3>Productos</h3>
-                <div className="product-cards-container">
-                    {products.map(product => (
-                        <div key={product._id} className="product-card">
-                            <img src={`https://tecnoshopback-1.onrender.com/${product.imagen}`} alt={product.nombre} className="product-image" />
-                            <div className="product-info">
-                                <h4>{product.nombre}</h4>
-                                <p>{product.descripcion}</p>
-                                <p>Precio: {product.precio}</p>
-                                <button onClick={() => handleCardUpdate(product)}>Editar</button>
-                                <button onClick={() => handleDeleteProduct(product._id)}>Eliminar</button>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </div>
-
-            {selectedProduct && (
-                <div className="actualizarProductos">
-                    <div className='actualizarnombre'>
-                        <h3>Actualizar Producto</h3>
-                        <input
-                            type="text"
-                            placeholder="Nombre del producto"
-                            value={selectedProduct.nombre}
-                            onChange={(e) => setSelectedProduct({ ...selectedProduct, nombre: e.target.value })}
-                        />
-                    </div>
-
-                    <div className='actualizarcategoria'>
-                        <select
-                            value={selectedProduct.categoria}
-                            onChange={(e) => setSelectedProduct({ ...selectedProduct, categoria: e.target.value })}
-                        >
-                            <option value="" disabled>Seleccionar Categoría</option>
-                            {categorias.map((categoria, index) => (
-                                <option key={index} value={categoria}>{categoria}</option>
-                            ))}
-                        </select>
-                    </div>
-
-                    <div className='actualizarsubcategoria'>
-                        <select
-                            value={selectedProduct.subcategoria}
-                            onChange={(e) => setSelectedProduct({ ...selectedProduct, subcategoria: e.target.value })}
-                        >
-                            <option value="" disabled>Seleccionar Subcategoría</option>
-                            {selectedProduct.categoria && subcategorias[selectedProduct.categoria] ? (
-                                subcategorias[selectedProduct.categoria].map((subcategoria, index) => (
-                                    <option key={index} value={subcategoria}>{subcategoria}</option>
-                                ))
-                            ) : null}
-                        </select>
-                    </div>
-
-                    <div className='actualizardescripcion'>
                     <input
                         type="text"
                         placeholder="Descripción"
-                        value={selectedProduct.descripcion}
-                        onChange={(e) => setSelectedProduct({ ...selectedProduct, descripcion: e.target.value })}
+                        value={newProduct.descripcion}
+                        onChange={(e) => setNewProduct({ ...newProduct, descripcion: e.target.value })}
                     />
-                    </div>
-
-                    <div className='actualizarprecio'>
                     <input
                         type="number"
                         placeholder="Precio del producto"
+                        value={newProduct.precio}
+                        onChange={(e) => setNewProduct({ ...newProduct, precio: e.target.value })}
+                    />
+                    <input
+                        type="text"
+                        placeholder="URL de la imagen"
+                        value={newProduct.imagen}
+                        onChange={(e) => setNewProduct({ ...newProduct, imagen: e.target.value })}
+                    />
+                    {newProductImagePreview && <img src={newProductImagePreview} alt="Vista previa" className="image-preview" />}
+                    <button onClick={handleAddProduct} disabled={!newProduct.nombre || !newProduct.precio || !newProduct.descripcion || !newProduct.imagen}>
+                        Añadir Producto
+                    </button>
+                </div>
+            )}
+
+            {/* Lista de productos */}
+            {!isEditing && (
+                <div className="product-list">
+                    <h3>Productos</h3>
+                    <div className='conteiner-cards'>
+                        <div className="product-cards">
+                            {products.map((product) => (
+                                <div key={product._id} className="product-card">
+                                    {/* Imagen del producto */}
+                                    {product.imagen && (
+                                        <img src={product.imagen} alt={product.nombre} className="product-image" />
+                                    )}
+                                    <div className="product-info">
+                                        <h4>{product.nombre}</h4>
+                                        <p><strong>Precio:</strong> ${product.precio}</p>
+                                    </div>
+                                    <div className="product-actions">
+                                        <button onClick={() => handleCardUpdate(product)}>Actualizar</button>
+                                        <button onClick={() => handleDeleteProduct(product._id)}>Eliminar</button>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                </div>
+            )}
+
+
+            {/* Formulario para actualizar producto */}
+            {isEditing && selectedProduct && (
+                <div className="editarProducto">
+                    <h3>Actualizar Producto</h3>
+                    <input
+                        type="text"
+                        value={selectedProduct.nombre}
+                        onChange={(e) => setSelectedProduct({ ...selectedProduct, nombre: e.target.value })}
+                    />
+                    <input
+                        type="text"
+                        value={selectedProduct.descripcion}
+                        onChange={(e) => setSelectedProduct({ ...selectedProduct, descripcion: e.target.value })}
+                    />
+                    <input
+                        type="number"
                         value={selectedProduct.precio}
                         onChange={(e) => setSelectedProduct({ ...selectedProduct, precio: e.target.value })}
                     />
-                    </div>
-
-                    <div className='actualizarimagen'>
                     <input
-                        type="file"
-                        accept="image/*"
-                        onChange={handleImageChange}
+                        type="text"
+                        value={selectedProduct.imagen}
+                        onChange={(e) => setSelectedProduct({ ...selectedProduct, imagen: e.target.value })}
                     />
-                    {imagePreview && <img src={imagePreview} alt="Preview" className="image-preview" />}
+                    {imagePreview && <img src={imagePreview} alt="Vista previa" className="image-preview" />}
+                    <div className='botonesActualizar'>
+                        <button onClick={handleUpdateProduct}>Actualizar Producto</button>
+                        <button onClick={() => setIsEditing(false)}>Cancelar</button>
                     </div>
-                    <button onClick={handleUpdateProduct}>Actualizar Producto</button>
                 </div>
             )}
         </div>
@@ -345,4 +314,3 @@ const ProductManagement = () => {
 };
 
 export default ProductManagement;
-
