@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const GlobalPriceIncreaseModal = ({ categories, token, onPricesUpdated }) => {
-    const [selectedCategory, setSelectedCategory] = useState('');
+const GlobalPriceIncreaseModal = ({ token, onPricesUpdated }) => {
     const [percentage, setPercentage] = useState('');
     const [error, setError] = useState(null);
 
@@ -12,21 +11,16 @@ const GlobalPriceIncreaseModal = ({ categories, token, onPricesUpdated }) => {
             return;
         }
 
-        if (!selectedCategory) {
-            setError('Por favor, seleccione una categoría.');
-            return;
-        }
-
         setError(null); // Limpiar errores previos
 
         try {
+            const token = localStorage.getItem('token'); // Obtener el token almacenado
             const response = await axios.put(
-                'https://tu-api.com/api/productos/actualizar-precios',
-                { porcentaje: parseFloat(percentage), categoria: selectedCategory },
+                'https://tecnoshopback-1.onrender.com/api/productos/actualizar-todos-precios',
+                { porcentaje: parseFloat(percentage) },
                 {
                     headers: {
-                        'Authorization': `Bearer ${token}`,
-                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${token}`, // Incluye el token en los encabezados
                     },
                 }
             );
@@ -77,21 +71,6 @@ const GlobalPriceIncreaseModal = ({ categories, token, onPricesUpdated }) => {
                                     aria-describedby="percentageHelp"
                                 />
                                 <div id="percentageHelp" className="form-text">Ingrese un porcentaje mayor que 0.</div>
-                            </div>
-
-                            <div className="mb-3">
-                                <label htmlFor="category" className="form-label">Seleccione una categoría:</label>
-                                <select
-                                    id="category"
-                                    value={selectedCategory}
-                                    onChange={(e) => setSelectedCategory(e.target.value)}
-                                    className="form-control"
-                                >
-                                    <option value="">Seleccione una categoría</option>
-                                    {categories.map((category) => (
-                                        <option key={category} value={category}>{category}</option>
-                                    ))}
-                                </select>
                             </div>
                         </div>
                         <div className="modal-footer">
