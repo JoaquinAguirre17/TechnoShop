@@ -2,8 +2,9 @@
 
 /* Asegúrate de que las tarjetas tengan un buen espacio entre ellas */
 .cardSlider {
+  width: 16rem;
   margin: 10px auto; /* Centramos la tarjeta */
-  min-height: 220px; /* Altura mínima para todas las pantallas */
+  height: 200px; /* Altura mínima para todas las pantallas */
   display: flex;
   flex-direction: column;
   justify-content: space-between;

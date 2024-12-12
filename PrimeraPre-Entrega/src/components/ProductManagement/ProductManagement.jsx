@@ -2,8 +2,9 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
 import './ProductManagement.css';
+import GlobalPriceIncreaseModal from '../ModalPrecio/GlobalPriceIncreaseModal ';
 
-const ProductManagement = () => {
+const ProductManagement = ({ categories, token }) => {
     const [products, setProducts] = useState([]);
     const [newProduct, setNewProduct] = useState({ nombre: '', descripcion: '', precio: '', imagen: '', categoria: '', subcategoria: '' });
     const [selectedProduct, setSelectedProduct] = useState(null);
@@ -11,6 +12,7 @@ const ProductManagement = () => {
     const [newProductImagePreview, setNewProductImagePreview] = useState('');
     const [error, setError] = useState(null);
     const [isEditing, setIsEditing] = useState(false); // Estado para controlar la edición
+    const [globalPriceIncrease, setGlobalPriceIncrease] = useState('');
 
     const categorias = [
         "Electrónica",
@@ -26,26 +28,32 @@ const ProductManagement = () => {
         "Gamer": ["Consolas", "Mouse", "Teclados", "Web Cam", "Cables-Consolas"]
     };
 
+
     useEffect(() => {
         const fetchProducts = async () => {
             const token = localStorage.getItem('token');
             if (!token) {
-                console.error('No token found');
+                setError('Token no encontrado. Por favor, inicia sesión.');
                 return;
             }
 
             try {
                 const response = await axios.get('https://tecnoshopback-1.onrender.com/api/productos/', {
                     headers: {
-                        'Authorization': `Bearer ${token}`,
+                        Authorization: `Bearer ${token}`,
                     },
                 });
-                setProducts(response.data);
+
+                // Verifica que la respuesta sea un array antes de asignarla a `products`
+                if (Array.isArray(response.data)) {
+                    setProducts(response.data);
+                } else {
+                    setError('La respuesta de productos no es válida.');
+                }
             } catch (error) {
-                console.error('Failed to fetch products', error);
+                setError('Error al obtener los productos. Intenta recargar la página.');
             }
         };
-
         fetchProducts();
     }, []);
 
@@ -67,7 +75,7 @@ const ProductManagement = () => {
             console.error('No token found');
             return;
         }
-
+    
         try {
             const decodedToken = jwtDecode(token);
             const currentTime = Date.now() / 1000;
@@ -75,12 +83,12 @@ const ProductManagement = () => {
                 console.error('Token expired');
                 return;
             }
-
+    
             if (!newProduct.nombre || !newProduct.precio || !newProduct.descripcion || !newProduct.imagen) {
                 setError('Por favor, completa todos los campos requeridos.');
                 return;
             }
-
+    
             const formData = new FormData();
             formData.append('nombre', newProduct.nombre);
             formData.append('descripcion', newProduct.descripcion);
@@ -88,15 +96,16 @@ const ProductManagement = () => {
             formData.append('categoria', newProduct.categoria);
             formData.append('subcategoria', newProduct.subcategoria);
             formData.append('imagen', newProduct.imagen);
-
+    
             const response = await axios.post('https://tecnoshopback-1.onrender.com/api/productos/crear', formData, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                     'Content-Type': 'multipart/form-data',
                 },
             });
-
-            setProducts([...products, response.data]);
+    
+            // Aquí se actualiza el estado de los productos correctamente
+            setProducts((prevProducts) => [...prevProducts, response.data]); 
             setNewProduct({ nombre: '', descripcion: '', precio: '', imagen: '', categoria: '', subcategoria: '' });
             setNewProductImagePreview('');
             setError(null);
@@ -105,6 +114,7 @@ const ProductManagement = () => {
             setError('Hubo un problema al agregar el producto.');
         }
     };
+    
 
     const handleCardUpdate = (product) => {
         setSelectedProduct(product);
@@ -118,12 +128,12 @@ const ProductManagement = () => {
             console.error('No token found');
             return;
         }
-
+    
         if (!selectedProduct || !selectedProduct._id) {
             console.error('Product not selected or missing ID');
             return;
         }
-
+    
         try {
             const decodedToken = jwtDecode(token);
             const currentTime = Date.now() / 1000;
@@ -131,7 +141,7 @@ const ProductManagement = () => {
                 console.error('Token expired');
                 return;
             }
-
+    
             const formData = new FormData();
             formData.append('nombre', selectedProduct.nombre);
             formData.append('precio', selectedProduct.precio);
@@ -139,17 +149,20 @@ const ProductManagement = () => {
             formData.append('categoria', selectedProduct.categoria);
             formData.append('subcategoria', selectedProduct.subcategoria);
             formData.append('imagen', selectedProduct.imagen);
-
+    
             const response = await axios.put(`https://tecnoshopback-1.onrender.com/api/productos/${selectedProduct._id}`, formData, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                     'Content-Type': 'multipart/form-data',
                 },
             });
-
-            setProducts(products.map(p => p._id === response.data._id ? response.data : p));
+    
+            // Actualizar el estado de los productos correctamente después de actualizar un producto
+            setProducts((prevProducts) =>
+                prevProducts.map((p) => (p._id === response.data._id ? response.data : p))
+            );
             setSelectedProduct(null);
-            setIsEditing(false); // Desactivar la edición
+            setIsEditing(false);
             setImagePreview('');
             setError(null);
         } catch (error) {
@@ -157,6 +170,7 @@ const ProductManagement = () => {
             setError('Hubo un problema al actualizar el producto.');
         }
     };
+    
 
     const handleDeleteProduct = async (id) => {
         const token = localStorage.getItem('token');
@@ -186,10 +200,27 @@ const ProductManagement = () => {
             setError('Hubo un problema al eliminar el producto.');
         }
     };
-
+    const handlePricesUpdated = (updatedProducts) => {
+        setProducts(updatedProducts);
+    };
+    
+    
+    
+    
+    
     return (
+
         <div className={`product-management-container ${isEditing ? 'actualizar-visible' : ''}`}>
             {error && <p className="error-message">{error}</p>}
+
+            {/* Formulario para aumento global de precio */}
+            {!isEditing && (
+                <GlobalPriceIncreaseModal
+                categories={categorias}
+                token={token}
+                onPricesUpdated={handlePricesUpdated}
+            />
+            )}
 
             {/* Formulario para añadir productos */}
             {!isEditing && (
@@ -255,7 +286,7 @@ const ProductManagement = () => {
                     <h3>Productos</h3>
                     <div className='conteiner-cards'>
                         <div className="product-cards">
-                            {products.map((product) => (
+                            {Array.isArray(products) && products.map((product) => (
                                 <div key={product._id} className="product-card">
                                     {/* Imagen del producto */}
                                     {product.imagen && (
@@ -273,10 +304,8 @@ const ProductManagement = () => {
                             ))}
                         </div>
                     </div>
-
                 </div>
             )}
-
 
             {/* Formulario para actualizar producto */}
             {isEditing && selectedProduct && (
@@ -310,7 +339,7 @@ const ProductManagement = () => {
                 </div>
             )}
         </div>
-    );
-};
 
+    );
+}
 export default ProductManagement;

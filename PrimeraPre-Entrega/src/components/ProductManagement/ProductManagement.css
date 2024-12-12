@@ -226,3 +226,34 @@
     flex-direction: column;
     gap: 20px;
 }
+.adjust-prices {
+    margin-bottom: 20px;
+  }
+  
+  .adjust-prices h3 {
+    margin-bottom: 10px;
+  }
+  
+  .adjust-prices select,
+  .adjust-prices input {
+    margin-right: 10px;
+    padding: 5px;
+  }
+  
+  .adjust-prices button {
+    padding: 5px 10px;
+    background-color: #686d76;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .adjust-prices button:hover {
+    background-color: #555b63;
+  }
+  
+  .error-message {
+    color: red;
+    margin-top: 10px;
+  }
+  

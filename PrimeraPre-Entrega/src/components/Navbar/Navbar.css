@@ -1,110 +1,144 @@
-/* Navbar.css */
-
-/* Barra de navegación personalizada */
+/* Estilos básicos para la Navbar */
 .custom-navbar {
-    background-color: orangered; /* Color de fondo */
-    width: 100%; /* Ocupa el 100% del ancho de la pantalla */
-    padding: 10px 0; /* Espaciado para darle más aire a la barra */
-    top: 0;
-    z-index: 1000; /* Asegura que esté sobre el contenido */
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Añade sombra para darle profundidad */
-}
-
-/* Control de visualización del menú en dispositivos pequeños */
-.navbar-toggler {
-    border-color: white; /* Color del borde del botón de colapso */
-}
-
-/* Ajustes para la navegación en dispositivos grandes */
-.navegacion {
+    background-color: orangered; /* Fondo oscuro para la navbar */
+    padding: 10px 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     display: flex;
-    justify-content: center; /* Centra los botones horizontalmente */
-    width: 100%;
-    flex-wrap: nowrap; /* Permite que los elementos se muevan a una nueva línea si es necesario */
-    gap: 20px; /* Espaciado uniforme entre los botones */
-    align-items: center; /* Alinea verticalmente los botones */
-    text-align: center; /* Centra el texto de los botones */
-}
-
-.nav-item {
-    margin: 0; /* Elimina el margen lateral */
-}
-
-/* Botones personalizados */
-.homebtn {
-    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center; /* Centrar la navbar en la pantalla */
+  }
+  
+  /* Estilo de los botones de la Navbar */
+  .split-btn-group .split-dropdown-btn  {
+    background-color: #0a0a0a91;
+    border: 3px solid #555;
+    color: #fff;
+    font-size: 16px;
+    padding: 8px 16px;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
     margin: 5px;
     border-radius: 20px;
-    border: 1px solid gray;
-    color: white;
-    font-weight: bold;
-    width: max-content;
-    padding: 10px 20px; /* Ajusta el relleno interno para mantener un tamaño uniforme */
-    transition: background-color 0.3s ease, color 0.3s ease;
-    display: inline-block; /* Hace que los botones se comporten como bloques en línea */
-}
-
-.homebtn:hover {
-    background-color: #333333;
-    color: orange;
-}
-
-/* Dropdowns personalizados */
-.electronica-nav-dropdown,
-.relojeria-nav-dropdown,
-.telefonia-nav-dropdown,
-.gamer-nav-dropdown {
-    background-color: rgba(0, 0, 0, 0.85);
-    border-radius: 10px; /* Bordes más suaves */
-    border: 1px solid rgba(255, 255, 255, 0.3); /* Borde blanco suave */
-    
-}
-
-.dropdown-menu {
-    background-color: rgba(0, 0, 0, 0.9); /* Fondo semi-transparente */
-    border-radius: 10px;
-    padding: 10px 0; /* Espaciado interno */
-}
-
-.navbar-nav .nav-link,
-.navbar-nav .dropdown-toggle,
-.homebtn {
-    color: white !important; /* Asegura que el texto sea blanco */
-    font-weight: bold;
-    padding: 10px 20px; /* Ajusta el relleno interno */
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-/* Estilo para los elementos del dropdown */
-.dropdown-item {
-    color: white; /* Color del texto de los elementos */
-    padding: 8px 15px; /* Ajuste del espaciado interno */
-    font-size: larger;
-}
-
-.dropdown-item:hover {
-    background-color: #333; /* Fondo de los elementos al pasar el ratón */
-    color: orange; /* Color del texto en hover */
-}
-
-/* Respuesta a tamaños de pantalla más pequeños */
-@media (max-width: 768px) {
-    .navbar-collapse {
-        justify-content: center;
-        padding: 20px 0; /* Ajuste de espaciado interior */
-    }
-
-    .navegacion {
-        justify-content: center;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .nav-item {
-        margin: 5px 0;
-    }
-
+  }
+  
+  .split-btn-group .split-dropdown-btn:hover,
+  .split-btn-group .split-dropdown-btn:focus,.split-dropdown-toggle  {
+    background-color: #f72702; /* Color al pasar el ratón */
+    color: black;
+    border-color: white;
+  }
+  
+  /* Estilo de los iconos de la Navbar */
+  .icon-btn {
+    background-color: transparent;
+    border: none;
+    margin: 0 10px;
+    cursor: pointer;
+  }
+  
+  .nav-icon {
+    color: #fff;
+  }
+  
+  .icon-btn:hover .nav-icon {
+    color: #ffffff; /* Color cuando el icono es presionado */
+  }
+  
+  /* Estilo de los dropdowns */
+  .split-dropdown-btn {
+    border-radius: 5px 5px 0 0; /* Bordes redondeados solo en la parte superior */
+  }
+  
+  .split-dropdown-toggle {
+   
+    border: none;
+    margin-left: 2px;
+    margin-top: 6px;
+    background-color:  #0a0a0a91 !important;
+    justify-content: center;
+    border-color: #555 !important;
+  }
+  
+  .dropdown-menu {
+    background-color: #333;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: none;
+  }
+  
+  .dropdown-item {
+    color: #fff;
+    font-size: 14px;
+    padding: 10px 20px;
+    transition: background-color 0.3s;
+  }
+  
+  .dropdown-item:hover,
+  .dropdown-item:focus {
+    background-color: #ff6347;
+    color: #fff;
+  }
+  
+  /* Estilo para Offcanvas en pantallas pequeñas */
+  .offcanvas {
+    background-color: #333;
+  }
+  
+  .offcanvas .offcanvas-header {
+    border-bottom: 1px solid #555;
+  }
+  
+  .offcanvas .offcanvas-body {
+    padding-top: 20px;
+  }
+  
+  .offcanvas .nav-link {
+    color: #fff;
+    padding: 10px 15px;
+  }
+  
+  .offcanvas .nav-link:hover {
+    background-color: #ffffff;
+    color: #fff;
+  }
+  
+  /* Estilo del toggle del Offcanvas */
+  .navbar-toggler {
+    border-color: #fff;
+  }
+  
+  .navbar-toggler-icon {
+    background-color: #fff;
+  }
+  
+  /* Estilo del collapse en pantallas grandes */
+  .navbar-collapse {
+    display: flex;
+    justify-content: center; /* Centrar los elementos dentro de la navbar */
+  }
+  
+  .navegacion {
+    display: flex;
+    justify-content: center; /* Centrar los elementos dentro de la navbar */
+    align-items: center;
+  }
+  
+  /* Agregar padding entre botones */
+  .split-btn-group {
+    margin: 0 10px;
+  }
+  
+  /* Media query para pantallas más pequeñas */
+  @media (max-width: 768px) {
     .custom-navbar {
-        position: static; /* No fija la barra en pantallas pequeñas */
+      padding: 10px 15px;
     }
-}
+  
+    .split-btn-group {
+      margin: 5px 0;
+    }
+  
+    .icon-btn {
+      margin: 0 5px;
+    }
+  }
+  

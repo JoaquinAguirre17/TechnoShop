@@ -1,16 +1,16 @@
 .card {
   width: 16rem; /* Puede ajustar según sea necesario */
   margin: 10px; /* Ajusta el margen si hay problemas de superposición */
-  background-color: rgba(0, 0, 0, 0.348);
-  color: white;
+  background-color: rgba(0, 0, 0, 0.348)!important;
   border-radius: 20px;
-  border: 3px solid orange;
+  border: 5px solid ;
   transition: transform 0.3s ease-in-out; /* Añadido para suavizar el efecto hover */
+  border-color: orange !important;
 }
 
 .card img {
   height: 18rem; /* Asegúrate de que las imágenes no se desborden */
-  border-radius: 20px;
+  border-radius: 5px;
 }
 
 .card:hover {
@@ -19,13 +19,13 @@
 
 .card-title {
   font-size: 1.4em;
-  color: orange;
+  color: orange !important;
   text-align: center;
 }
 
 .card-text {
   font-size: 1.1em;
-  color: #faf6f6;
+  color: #fffefe;
   text-align: center;
 }
 @media (max-width: 576px) {

@@ -1,0 +1,211 @@
+.split-btn-group {
+  display: flex;
+  align-items: center;
+  gap: 6px; /* Aumenta el espacio entre los botones */
+}
+
+/* Estilos de los botones */
+.split-dropdown-btn {
+  font-weight: bold;
+  color: #ffffff; /* Blanco */
+  background-color: orangered; /* Naranja */
+  border: 2px solid #000000; /* Negro */
+  transition: color 0.3s, background-color 0.3s, border-color 0.3s;
+  padding: 10px 20px; /* Añade un poco de padding para mayor tamaño */
+}
+
+.split-dropdown-btn:hover {
+  color: #000000; /* Negro */
+  background-color: #ffffff; /* Blanco */
+  border-color: #ffa500; /* Naranja */
+}
+
+/* Estilos del dropdown */
+.split-dropdown-toggle {
+  background-color: orangered; /* Naranja */
+  border: 2px solid #000000; /* Negro */
+  color: #ffffff; /* Blanco */
+  padding: 10px 20px; /* Añade un poco de padding para mayor tamaño */
+}
+
+.split-dropdown-toggle:hover {
+  color: #000000; /* Negro */
+  border-color: #ffffff; /* Blanco */
+}
+
+/* Estilo del menú del Dropdown */
+.dropdown-menu {
+  background-color: orangered; /* Naranja */
+  border-radius: 5px;
+  padding: 10px 0; /* Añade padding al menú del dropdown para mayor separación */
+  border: 2px solid #000000; /* Negro */
+}
+
+/* Estilos de los ítems del dropdown */
+.dropdown-item {
+  color: #ffffff; /* Blanco */
+  transition: background-color 0.3s, color 0.3s;
+  padding: 10px 20px; /* Añade padding a los items para mayor área de clic */
+}
+
+.dropdown-item:hover {
+  background-color: #000000; /* Negro */
+  color: #ffa500; /* Naranja */
+}
+
+/* Estilos generales de la barra de navegación */
+.custom-navbar {
+  background: orangered; /* Naranja */
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Sombra negra */
+  border-bottom: 2px solid #000000; /* Línea negra */
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding: 10px 0;
+}
+
+/* Marca del Navbar */
+.custom-brand {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #ffffff; /* Blanco */
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+  margin-right: 20px; /* Añade espacio entre el logo y la navbar */
+}
+
+.custom-brand:hover {
+  color: #000000; /* Negro */
+  text-shadow: 0 0 25px rgba(0, 0, 0, 1); /* Negro brillante */
+}
+
+.custom-brand .logo {
+  width: 100px;
+  height: 100px;
+}
+
+/* Estilos del toggle en la navbar */
+.custom-toggle {
+  background-color: transparent;
+  border: none;
+  color: #ffffff; /* Blanco */
+  font-size: 1.5rem;
+}
+
+/* Cambia el color de los palitos del ícono hamburguesa */
+.custom-toggle .navbar-toggler-icon {
+  background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30"%3E%3Cpath fill="%23ffffff" d="M0 5h30v2H0zm0 6h30v2H0zm0 6h30v2H0z"%3E%3C/path%3E%3C/svg%3E'); /* Blanco */
+}
+
+/* Cambiar el color a negro en el hover */
+.custom-toggle:hover .navbar-toggler-icon {
+  background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30"%3E%3Cpath fill="%23000000" d="M0 5h30v2H0zm0 6h30v2H0zm0 6h30v2H0z"%3E%3C/path%3E%3C/svg%3E'); /* Negro */
+}
+
+.custom-toggle:hover {
+  color: #000000; /* Negro */
+}
+
+/* Offcanvas general */
+.custom-offcanvas {
+  background-color: orangered; /* Naranja */
+  color: #ffffff; /* Blanco */
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Negro */
+  width: auto;
+  max-width: 80%;
+  padding: 20px;
+  border-radius: 20px;
+  border: 2px solid #000000; /* Negro */
+}
+
+.custom-offcanvas-header {
+  border-bottom: 1px solid #000000; /* Línea negra */
+}
+
+.custom-title {
+  color: #ffffff; /* Blanco */
+  font-size: 1.5rem;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+/* Estilos para los íconos en el final de la navbar */
+.custom-end-nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 20px; /* Añade más espacio entre los íconos */
+}
+.logo{
+  color: white;
+  background-color: #000000;
+  border-radius: 50%;
+}
+.custom-icon {
+  color: #ffffff; /* Blanco */
+  font-size: 24px;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.custom-icon:hover {
+  color: #000000; /* Negro */
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+}
+
+/* Estilos de navegación */
+.custom-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Añade espacio entre las categorías */
+}
+
+.custom-nav .split-btn-group {
+  margin-bottom: 20px; /* Añade espacio después de cada ButtonGroup */
+}
+
+@media (max-width: 992px) {
+  .custom-nav {
+    flex-direction: column; /* Alineación vertical en pantallas pequeñas */
+  }
+}
+
+/* Estilos de los dropdowns */
+.split-dropdown-button {
+  color: #ffffff; /* Blanco */
+  font-size: 1.2rem;
+  font-weight: bold;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.split-dropdown-button:hover {
+  color: #000000; /* Negro */
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+}
+
+/* Dropdowns */
+.custom-dropdown {
+  color: #ffffff !important; /* Blanco */
+  font-weight: bold;
+}
+
+.custom-dropdown .dropdown-toggle {
+  color: #ffffff !important; /* Blanco */
+}
+
+.custom-dropdown .dropdown-toggle:hover {
+  color: #000000; /* Negro */
+  text-shadow: 0 0 10px #000000, 0 0 15px #000000, 0 0 20px #000000;
+}
+
+.custom-dropdown-item {
+  color: #ffffff !important; /* Blanco */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.custom-dropdown-item:hover {
+  background-color: #000000; /* Negro */
+  color: #ffa500; /* Naranja */
+}
+
+.dropdown-menu {
+  background-color: orangered; /* Naranja */
+}
