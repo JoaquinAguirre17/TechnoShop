@@ -39,7 +39,7 @@ const GlobalPriceIncreaseModal = ({ token, onPricesUpdated }) => {
 
     return (
         <div>
-            {/* Botón para abrir el modal */}
+            {/* Botón para abrir el modalaaa */}
             <button
                 type="button"
                 className="btn btn-primary"
