@@ -24,7 +24,7 @@ const GlobalPriceIncreaseModal = ({ token, onPricesUpdated }) => {
         try {
             // Enviar solicitud al backend para actualizar precios
             const response = await axios.put(
-                'https://tecnoshopback-1.onrender.com/api/productos/actualizar-todos-precios',
+                'https://tecnoshopback-1.onrender.com/api/productos/precios/actualizar-todos',
                 { porcentaje: parseFloat(percentaje) }, // Nombre corregido
                 {
                     headers: {

@@ -142,18 +142,21 @@ const ProductManagement = ({ categories, token }) => {
                 return;
             }
     
-            const formData = new FormData();
-            formData.append('nombre', selectedProduct.nombre);
-            formData.append('precio', selectedProduct.precio);
-            formData.append('descripcion', selectedProduct.descripcion);
-            formData.append('categoria', selectedProduct.categoria);
-            formData.append('subcategoria', selectedProduct.subcategoria);
-            formData.append('imagen', selectedProduct.imagen);
+            // Preparar los datos sin la imagen en FormData
+            const productData = {
+                nombre: selectedProduct.nombre,
+                precio: selectedProduct.precio,
+                descripcion: selectedProduct.descripcion,
+                categoria: selectedProduct.categoria,
+                subcategoria: selectedProduct.subcategoria,
+                imagen: selectedProduct.imagen,  // Solo pasas la URL de la imagen
+            };
     
-            const response = await axios.put(`https://tecnoshopback-1.onrender.com/api/productos/${selectedProduct._id}`, formData, {
+            // Enviar los datos al backend
+            const response = await axios.put(`https://tecnoshopback-1.onrender.com/api/productos/actualizar/${selectedProduct._id}`, productData, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'multipart/form-data',
+                    'Content-Type': 'application/json',  // Ahora se maneja como JSON
                 },
             });
     
@@ -170,6 +173,7 @@ const ProductManagement = ({ categories, token }) => {
             setError('Hubo un problema al actualizar el producto.');
         }
     };
+    
     
 
     const handleDeleteProduct = async (id) => {
